@@ -3,472 +3,854 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>CFR 101.36 Supplement Label Reference Guide</title>
+<title>FDA Supplement Label Reference Guide</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Arial,sans-serif;background:#f3f4f6;color:#111}
-  a{color:inherit}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f3f4f6;color:#111;font-size:14px}
 
-  /* HEADER */
-  #header{background:#111827;color:#fff;padding:20px 16px}
-  #header-inner{max-width:900px;margin:0 auto}
-  #header-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-  #header-title{display:flex;align-items:center;gap:10px}
-  #header-title h1{font-size:1.2rem;font-weight:900;line-height:1.2}
-  #header-title p{font-size:.7rem;color:#9ca3af;margin-top:2px}
-  #btn-print{background:#fff;color:#111;border:none;padding:8px 14px;border-radius:8px;font-weight:700;font-size:.8rem;cursor:pointer;display:flex;align-items:center;gap:6px}
-  #btn-print:hover{background:#e5e7eb}
-  #search-wrap{margin-top:14px}
-  #search{width:100%;padding:12px 16px;border-radius:8px;border:none;font-size:.85rem;outline:none}
-  #search-count{font-size:.7rem;color:#9ca3af;margin-top:6px;margin-left:4px;min-height:16px}
+/* HEADER */
+#hdr{background:#111827;color:#fff;padding:20px 16px}
+#hdr-in{max-width:960px;margin:0 auto}
+#hdr-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px}
+#hdr-title h1{font-size:1.25rem;font-weight:900;line-height:1.2}
+#hdr-title p{font-size:.7rem;color:#9ca3af;margin-top:3px}
+#btn-print{background:#fff;color:#111;border:none;padding:8px 14px;border-radius:8px;font-weight:700;font-size:.8rem;cursor:pointer}
+#btn-print:hover{background:#e5e7eb}
+#srch-wrap{margin-top:14px}
+#srch{width:100%;padding:12px 16px;border-radius:8px;border:none;font-size:.85rem;outline:none}
+#srch-cnt{font-size:.7rem;color:#9ca3af;margin-top:5px;margin-left:4px;min-height:16px}
 
-  /* TOOLBAR */
-  #toolbar{background:#fff;border-bottom:1px solid #e5e7eb;padding:8px 16px}
-  #toolbar-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-  #disclaimer{background:#fffbeb;border:1px solid #fde68a;border-radius:4px;padding:6px 10px;font-size:.7rem;color:#92400e}
-  #toolbar-btns{display:flex;gap:8px}
-  .tbtn{font-size:.7rem;border-radius:4px;padding:4px 10px;cursor:pointer;border:1px solid}
-  #btn-expand-all{color:#2563eb;border-color:#93c5fd}
-  #btn-expand-all:hover{background:#eff6ff}
-  #btn-collapse-all{color:#4b5563;border-color:#d1d5db}
-  #btn-collapse-all:hover{background:#f9fafb}
+/* TOOLBAR */
+#tbar{background:#fff;border-bottom:1px solid #e5e7eb;padding:8px 16px;position:sticky;top:0;z-index:100}
+#tbar-in{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+#disc{background:#fffbeb;border:1px solid #fde68a;border-radius:4px;padding:5px 10px;font-size:.68rem;color:#92400e;max-width:600px}
+#tbar-btns{display:flex;gap:6px;flex-wrap:wrap}
+.tbtn{font-size:.7rem;border-radius:4px;padding:4px 10px;cursor:pointer;border:1px solid;background:#fff}
+.tbtn.blue{color:#2563eb;border-color:#93c5fd}.tbtn.blue:hover{background:#eff6ff}
+.tbtn.gray{color:#4b5563;border-color:#d1d5db}.tbtn.gray:hover{background:#f9fafb}
+.tbtn.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
-  /* CONTENT */
-  #content{max-width:900px;margin:20px auto;padding:0 16px 40px}
+/* CHAPTER NAV */
+#chapnav{background:#1e3a5f;padding:10px 16px;overflow-x:auto;white-space:nowrap}
+#chapnav-in{max-width:960px;margin:0 auto;display:flex;gap:6px}
+.cnav{background:rgba(255,255,255,.15);color:#e2e8f0;border:none;padding:5px 11px;border-radius:20px;font-size:.7rem;cursor:pointer;white-space:nowrap}
+.cnav:hover{background:rgba(255,255,255,.3)}
+.cnav.active{background:#fff;color:#1e3a5f;font-weight:700}
 
-  /* SECTION CARDS */
-  .card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;margin-bottom:12px}
-  .card-header{width:100%;text-align:left;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border:none;background:none;font-family:inherit}
-  .card-header:hover{background:#f9fafb}
-  .card-header-left{display:flex;align-items:center;gap:12px}
-  .card-icon{font-size:1.3rem}
-  .card-title{font-weight:700;font-size:.95rem;color:#111}
-  .card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}
-  .tag{background:#f3f4f6;color:#6b7280;border-radius:4px;padding:1px 6px;font-size:.65rem}
-  .card-arrow{color:#9ca3af;font-size:1rem;transition:transform .2s}
-  .card-arrow.open{transform:rotate(180deg)}
-  .card-body{display:none;padding:0 20px 20px;border-top:1px solid #f3f4f6}
-  .card-body.open{display:block}
+/* CONTENT */
+#content{max-width:960px;margin:20px auto;padding:0 16px 40px}
 
-  /* SECTION ITEMS */
-  .item{margin-top:20px}
-  .item-heading{font-weight:700;font-size:.85rem;color:#1f2937;margin-bottom:4px;display:flex;align-items:center;gap:8px}
-  .item-heading::before{content:'';display:inline-block;width:5px;height:18px;background:#3b82f6;border-radius:3px;flex-shrink:0}
-  .item-text{font-size:.82rem;line-height:1.6;color:#374151;margin-left:13px}
+/* CHAPTER HEADERS */
+.chap-header{background:#1e3a5f;color:#fff;border-radius:10px;padding:14px 18px;margin:28px 0 10px;display:flex;align-items:center;gap:10px}
+.chap-header .chap-icon{font-size:1.4rem}
+.chap-header h2{font-size:1rem;font-weight:900}
+.chap-header p{font-size:.72rem;color:#93c5fd;margin-top:2px}
 
-  /* VISUALS */
-  .vis{margin:10px 0 0 13px}
-  .vis-label{font-size:.65rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+/* SECTION CARDS */
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;margin-bottom:10px}
+.card-hdr{width:100%;text-align:left;padding:13px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border:none;background:none;font-family:inherit}
+.card-hdr:hover{background:#f9fafb}
+.card-left{display:flex;align-items:center;gap:10px}
+.card-icon{font-size:1.1rem}
+.card-title{font-weight:700;font-size:.88rem;color:#111}
+.card-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:3px}
+.tag{background:#f3f4f6;color:#6b7280;border-radius:4px;padding:1px 5px;font-size:.62rem}
+.card-arr{color:#9ca3af;font-size:.9rem;transition:transform .2s;flex-shrink:0;margin-left:8px}
+.card-arr.open{transform:rotate(180deg)}
+.card-body{display:none;padding:0 18px 18px;border-top:1px solid #f3f4f6}
+.card-body.open{display:block}
 
-  .box-correct{border:2px solid #22c55e;background:#f0fdf4;border-radius:6px;padding:10px 12px}
-  .box-warning{border:2px solid #f59e0b;background:#fffbeb;border-radius:6px;padding:10px 12px}
-  .box-neutral{border:2px solid #9ca3af;background:#f9fafb;border-radius:6px;padding:10px 12px}
-  .box-content{font-family:monospace;font-size:.82rem}
+/* ITEMS */
+.item{margin-top:18px}
+.item-h{font-weight:700;font-size:.82rem;color:#1f2937;margin-bottom:4px;display:flex;align-items:center;gap:7px}
+.item-h::before{content:'';display:inline-block;width:4px;height:16px;background:#2563eb;border-radius:2px;flex-shrink:0}
+.item-t{font-size:.8rem;line-height:1.65;color:#374151;margin-left:11px}
 
-  .snippet{border:1px solid #111;border-radius:4px;padding:10px;display:inline-block;background:#fff;min-width:220px}
-  .snippet-lbl{font-size:.65rem;color:#9ca3af;font-weight:700;text-transform:uppercase;margin-bottom:4px}
-  .snippet-line{font-size:.8rem;line-height:1.5}
-  .snippet-line.bold{font-weight:900;font-size:.95rem}
-  .snippet-line.small{font-size:.7rem;color:#4b5563}
-  .snippet-line.cols{display:flex;justify-content:space-between;gap:20px}
-  .snippet-line.cols span:last-child{font-weight:700}
-  .snippet-hr{border:none;border-top:1px solid #d1d5db;margin:4px 0}
+/* VISUALS */
+.vis{margin:8px 0 0 11px}
+.vis-lbl{font-size:.62rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.box-correct{border:2px solid #22c55e;background:#f0fdf4;border-radius:6px;padding:10px 12px}
+.box-warning{border:2px solid #f59e0b;background:#fffbeb;border-radius:6px;padding:10px 12px}
+.box-neutral{border:1px solid #9ca3af;background:#f9fafb;border-radius:6px;padding:10px 12px}
+.box-content{font-family:monospace;font-size:.8rem;line-height:1.5}
+.box-wrong{border:2px solid #ef4444;background:#fef2f2;border-radius:6px;padding:10px 12px}
 
-  .full-panel{border:2px solid #000;display:inline-block;background:#fff;min-width:240px;border-radius:2px}
-  .fp-title{font-size:1.4rem;font-weight:900;padding:6px 10px 4px;border-bottom:4px solid #000}
-  .fp-serving{font-size:.72rem;padding:2px 10px}
-  .fp-body{border-top:8px solid #000}
-  .fp-row{display:flex;justify-content:space-between;align-items:center;padding:2px 10px;font-size:.72rem;border-bottom:1px solid #e5e7eb}
-  .fp-row.header-row{color:#6b7280;border-bottom:1px solid #d1d5db}
-  .fp-row .dv{font-weight:700;margin-left:8px;white-space:nowrap}
-  .fp-footnote{font-size:.65rem;color:#4b5563;padding:6px 10px;border-top:1px solid #e5e7eb;white-space:pre-line}
+.snippet{border:1px solid #111;border-radius:4px;padding:10px;display:inline-block;background:#fff;min-width:220px;max-width:100%}
+.snippet-lbl{font-size:.62rem;color:#9ca3af;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.sline{font-size:.78rem;line-height:1.5}
+.sline.bold{font-weight:900;font-size:.92rem}
+.sline.small{font-size:.68rem;color:#4b5563}
+.sline.cols{display:flex;justify-content:space-between;gap:16px}
+.sline.cols span:last-child{font-weight:700}
+.sline.indent{padding-left:14px}
+.snippet-hr{border:none;border-top:1px solid #d1d5db;margin:4px 0}
 
-  .vis-list{border:1px solid #bfdbfe;background:#eff6ff;border-radius:6px;padding:10px 12px}
-  .vis-list.neutral{border-color:#d1d5db;background:#f9fafb}
-  .vis-list ul{list-style:none;margin-top:6px}
-  .vis-list li{font-size:.8rem;padding:2px 0;display:flex;gap:6px}
-  .vis-list li::before{content:'•';color:#3b82f6}
-  .vis-list.neutral li::before{color:#6b7280}
+.full-panel{border:2px solid #000;display:inline-block;background:#fff;min-width:240px;max-width:100%;border-radius:2px}
+.fp-title{font-size:1.4rem;font-weight:900;padding:6px 10px 4px;border-bottom:4px solid #000}
+.fp-sub{font-size:.7rem;padding:2px 10px}
+.fp-body{border-top:8px solid #000}
+.fp-row{display:flex;justify-content:space-between;align-items:center;padding:2px 10px;font-size:.7rem;border-bottom:1px solid #e5e7eb}
+.fp-row.hrow{color:#6b7280;border-bottom:1px solid #d1d5db}
+.fp-row .dv{font-weight:700;margin-left:8px;white-space:nowrap}
+.fp-row .indent{padding-left:12px}
+.fp-fn{font-size:.63rem;color:#4b5563;padding:5px 10px;border-top:1px solid #e5e7eb;white-space:pre-line}
 
-  .vis-olist{border:1px solid #c7d2fe;background:#eef2ff;border-radius:6px;padding:10px 12px}
-  .vis-olist-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;margin-top:6px}
-  .vis-olist-grid div{font-size:.75rem;color:#374151;padding:1px 0}
+.vis-list{border:1px solid #bfdbfe;background:#eff6ff;border-radius:6px;padding:10px 12px}
+.vis-list.neutral{border-color:#d1d5db;background:#f9fafb}
+.vis-list.green{border-color:#86efac;background:#f0fdf4}
+.vis-list.yellow{border-color:#fde68a;background:#fffbeb}
+.vis-list ul{list-style:none;margin-top:6px}
+.vis-list li{font-size:.78rem;padding:2px 0;display:flex;gap:6px;line-height:1.4}
+.vis-list li::before{content:'•';color:#3b82f6;flex-shrink:0}
+.vis-list.neutral li::before{color:#6b7280}
+.vis-list.green li::before{color:#16a34a}
+.vis-list.yellow li::before{color:#d97706}
 
-  table.vis-table{border-collapse:collapse;margin-top:6px;font-size:.78rem}
-  table.vis-table th{background:#374151;color:#fff;padding:5px 12px;text-align:left;font-size:.72rem}
-  table.vis-table td{border:1px solid #d1d5db;padding:4px 12px;font-family:monospace}
-  table.vis-table tr:nth-child(even) td{background:#f9fafb}
+.vis-olist{border:1px solid #c7d2fe;background:#eef2ff;border-radius:6px;padding:10px 12px}
+.vis-olist-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;margin-top:6px}
+.vis-olist-grid div{font-size:.73rem;color:#374151;padding:1px 0}
 
-  .typesize-box{border:1px solid #d1d5db;background:#f9fafb;border-radius:6px;padding:10px 12px}
-  .typesize-warn{font-size:.72rem;color:#dc2626;margin-top:6px}
+table.vt{border-collapse:collapse;margin-top:6px;font-size:.76rem;max-width:100%}
+table.vt th{background:#374151;color:#fff;padding:5px 11px;text-align:left;font-size:.7rem}
+table.vt td{border:1px solid #d1d5db;padding:4px 11px;vertical-align:top}
+table.vt tr:nth-child(even) td{background:#f9fafb}
+table.vt.wide{width:100%}
 
-  .bottle-diag{border:1px solid #d1d5db;background:#f9fafb;border-radius:6px;padding:10px 12px}
-  .bottle-flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
-  .bottle-box{border:2px solid;border-radius:4px;padding:8px;text-align:center;font-size:.72rem;min-width:80px}
-  .bottle-box.pdp{border-color:#3b82f6;background:#eff6ff}
-  .bottle-box.pdp strong{color:#1d4ed8}
-  .bottle-box.info{border-color:#22c55e;background:#f0fdf4;min-width:120px}
-  .bottle-box.info strong{color:#15803d}
-  .bottle-box.back{border-color:#d1d5db;background:#fff}
-  .bottle-box.back strong{color:#6b7280}
-  .bottle-arrow{color:#9ca3af;font-size:1.2rem}
-  .bottle-note{font-size:.68rem;color:#6b7280;margin-top:6px}
+.typesize-box{border:1px solid #d1d5db;background:#f9fafb;border-radius:6px;padding:10px 12px}
+.typesize-warn{font-size:.7rem;color:#dc2626;margin-top:6px}
 
-  /* EMPTY STATE */
-  #empty{display:none;text-align:center;padding:60px 20px;color:#6b7280}
-  #empty.show{display:block}
-  #empty .emoji{font-size:2.5rem;margin-bottom:10px}
+.bottle-diag{border:1px solid #d1d5db;background:#f9fafb;border-radius:6px;padding:10px 12px}
+.bottle-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.bx{border:2px solid;border-radius:4px;padding:8px;text-align:center;font-size:.7rem}
+.bx.pdp{border-color:#3b82f6;background:#eff6ff;min-width:80px}
+.bx.pdp strong{color:#1d4ed8}
+.bx.info{border-color:#22c55e;background:#f0fdf4;min-width:120px}
+.bx.info strong{color:#15803d}
+.bx.back{border-color:#d1d5db;background:#fff;min-width:80px}
+.bx.back strong{color:#6b7280}
+.barr{color:#9ca3af;font-size:1.1rem}
+.bottle-note{font-size:.67rem;color:#6b7280;margin-top:5px}
 
-  /* FOOTER */
-  #footer{text-align:center;font-size:.7rem;color:#9ca3af;padding-bottom:30px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:500px){.two-col{grid-template-columns:1fr}}
 
-  /* PRINT */
-  @media print {
-    #header,#toolbar,#footer{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    #btn-print,#toolbar-btns,#search-wrap,#search-count{display:none!important}
-    body{background:#fff}
-    .card{border:1px solid #ccc;border-radius:4px;margin-bottom:14px;break-inside:avoid;page-break-inside:avoid}
-    .card-header{cursor:default}
-    .card-body{display:block!important}
-    .card-arrow{display:none}
-    #header{background:#111827!important;padding:14px}
-    #toolbar{background:#fff}
-    #disclaimer{display:block}
-    #toolbar-btns{display:none}
-    table.vis-table th{background:#374151!important;color:#fff!important}
-    .vis-list{background:#eff6ff!important}
-    .vis-list.neutral{background:#f9fafb!important}
-    .vis-olist{background:#eef2ff!important}
-    .box-correct{background:#f0fdf4!important}
-    .box-warning{background:#fffbeb!important}
-    .bottle-box.pdp{background:#eff6ff!important}
-    .bottle-box.info{background:#f0fdf4!important}
-    @page{margin:.7in;size:letter}
-  }
+/* EMPTY */
+#empty{display:none;text-align:center;padding:60px 20px;color:#6b7280}
+#empty.show{display:block}
+
+/* FOOTER */
+#footer{text-align:center;font-size:.68rem;color:#9ca3af;padding:10px 16px 30px;max-width:960px;margin:0 auto}
+
+/* PRINT */
+@media print{
+  #tbar,#chapnav,#btn-print,#srch-wrap,#srch-cnt,#tbar-btns{display:none!important}
+  body{background:#fff}
+  .card{border:1px solid #ccc;border-radius:4px;margin-bottom:12px;break-inside:avoid;page-break-inside:avoid}
+  .card-body{display:block!important}
+  .card-arr{display:none}
+  .chap-header{background:#1e3a5f!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;border-radius:4px;margin:20px 0 8px}
+  table.vt th{background:#374151!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  table.vt tr:nth-child(even) td{background:#f9fafb!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .vis-list{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .vis-olist{background:#eef2ff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .box-warning{background:#fffbeb!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .box-correct{background:#f0fdf4!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .bx.pdp{background:#eff6ff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .bx.info{background:#f0fdf4!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @page{margin:.65in;size:letter}
+}
 </style>
 </head>
 <body>
 
-<div id="header">
-  <div id="header-inner">
-    <div id="header-top">
-      <div id="header-title">
-        <span style="font-size:1.6rem">🏛️</span>
-        <div>
-          <h1>CFR 101.36 Supplement Label Reference Guide</h1>
-          <p>Source: 21 CFR §101.36 (eCFR.gov) &amp; FDA Dietary Supplements Guidance</p>
-        </div>
+<div id="hdr">
+  <div id="hdr-in">
+    <div id="hdr-top">
+      <div id="hdr-title">
+        <h1>🏛️ FDA Dietary Supplement Label Reference Guide</h1>
+        <p>Sources: 21 CFR §101.36 (eCFR.gov) · FDA Dietary Supplement Labeling Guide (All Chapters) · FDA Qualified Health Claims</p>
       </div>
-      <button id="btn-print" onclick="printGuide()">🖨️ Print / Save as PDF</button>
+      <button id="btn-print" onclick="doPrint()">🖨️ Print / Save PDF</button>
     </div>
-    <div id="search-wrap">
-      <input id="search" type="text" placeholder="🔍  Search any term: rounding, % DV, serving size, proprietary blend, format, placement..." oninput="doSearch(this.value)"/>
-      <div id="search-count"></div>
+    <div id="srch-wrap">
+      <input id="srch" type="text" placeholder="🔍  Search: rounding, % DV, serving size, health claim, net weight, NDI, identity, allergen, expiration..." oninput="doSearch(this.value)"/>
+      <div id="srch-cnt"></div>
     </div>
   </div>
 </div>
 
-<div id="toolbar">
-  <div id="toolbar-inner">
-    <div id="disclaimer">⚠️ <strong>Important:</strong> Always verify against the current official eCFR before final label approval. Consult a regulatory specialist.</div>
-    <div id="toolbar-btns">
-      <button class="tbtn" id="btn-expand-all" onclick="setAll(true)">Expand All</button>
-      <button class="tbtn" id="btn-collapse-all" onclick="setAll(false)">Collapse All</button>
+<div id="tbar">
+  <div id="tbar-in">
+    <div id="disc">⚠️ <strong>Reference only.</strong> Always verify against current official eCFR &amp; FDA sources before final label approval. Consult a regulatory specialist.</div>
+    <div id="tbar-btns">
+      <button class="tbtn blue" onclick="setAll(true)">Expand All</button>
+      <button class="tbtn gray" onclick="setAll(false)">Collapse All</button>
     </div>
+  </div>
+</div>
+
+<div id="chapnav">
+  <div id="chapnav-in">
+    <button class="cnav" onclick="jumpTo('ch-general')">Ch. I General</button>
+    <button class="cnav" onclick="jumpTo('ch-identity')">Ch. II Identity</button>
+    <button class="cnav" onclick="jumpTo('ch-net')">Ch. III Net Quantity</button>
+    <button class="cnav" onclick="jumpTo('ch-nutrition')">Ch. IV Nutrition</button>
+    <button class="cnav" onclick="jumpTo('ch-ingredients')">Ch. V Ingredients</button>
+    <button class="cnav" onclick="jumpTo('ch-claims')">Ch. VI Claims</button>
+    <button class="cnav" onclick="jumpTo('ch-ndi')">Ch. VII NDI</button>
+    <button class="cnav" onclick="jumpTo('ch-other')">Ch. VIII Other</button>
+    <button class="cnav" onclick="jumpTo('ch-dvadults')">App. B Daily Values</button>
+    <button class="cnav" onclick="jumpTo('ch-dvinfants')">App. C Infants/Children</button>
+    <button class="cnav" onclick="jumpTo('ch-ncc')">App. D Nutrient Claims</button>
+    <button class="cnav" onclick="jumpTo('ch-health')">App. E Health Claims</button>
+    <button class="cnav" onclick="jumpTo('ch-qualified')">Qualified Claims</button>
   </div>
 </div>
 
 <div id="content"></div>
-<div id="empty"><div class="emoji">🔍</div><div id="empty-msg"></div><div style="font-size:.8rem;margin-top:6px">Try: calories, font size, blend, % DV, rounding, placement</div></div>
-<div id="footer">All content sourced exclusively from: 21 CFR §101.36 via eCFR.gov &amp; FDA.gov Dietary Supplements Guidance Documents</div>
+<div id="empty"><div style="font-size:2.5rem">🔍</div><div id="empty-msg" style="font-size:1rem;font-weight:700;margin-top:8px"></div><div style="font-size:.8rem;margin-top:6px">Try: calories, font size, blend, % DV, rounding, placement, health claim, NDI, allergen</div></div>
+<div id="footer">All content sourced from: 21 CFR §101.36 · FDA Dietary Supplement Labeling Guide Chapters I–VIII &amp; Appendices B–E · FDA Qualified Health Claims</div>
 
 <script>
-var sections=[
-  {id:"overview",title:"Overview & Applicability",icon:"📋",
-   tags:["overview","applicability","dietary supplement","supplement facts","required","general"],
-   content:[
-    {h:"What This Regulation Covers",
-     t:"21 CFR 101.36 governs the nutrition labeling of dietary supplements. Any product that meets the definition of a 'dietary supplement' under section 201(ff) of the Federal Food, Drug, and Cosmetic Act must bear a Supplement Facts panel.",
-     v:null},
-    {h:"The Panel is Called 'Supplement Facts'",
-     t:"Unlike food products which use 'Nutrition Facts,' dietary supplement labels must use the title 'Supplement Facts.' This title appears at the top of the panel.",
-     v:{type:"box",label:"CORRECT ✅",content:"Supplement Facts",style:"correct"}}
-   ]},
-  {id:"serving",title:"Serving Size & Servings Per Container",icon:"🥄",
-   tags:["serving size","servings per container","serving","tablespoon","tablet","capsule","packet","unit"],
-   content:[
-    {h:"Serving Size Declaration",
-     t:"The serving size must be declared as the common household measure most appropriate for the product (e.g., '1 tablet,' '2 capsules,' '1 packet,' '1 teaspoon'). A metric equivalent must also be stated in parentheses.",
-     v:{type:"snippet",lines:[{b:true,t:"Supplement Facts"},{t:"Serving Size 1 Tablet (1.5 g)"},{t:"Servings Per Container 60"}]}},
-    {h:"Servings Per Container",
-     t:"The number of servings per container must be declared. If not a whole number and greater than 1, it may be rounded to the nearest whole number. If less than or equal to 1, it must be expressed as a fraction.",
-     v:null}
-   ]},
-  {id:"required",title:"Required Nutrients & Dietary Ingredients",icon:"🧪",
-   tags:["required","nutrients","dietary ingredients","calories","total fat","sodium","total carbohydrate","protein","vitamin","mineral","mandatory"],
-   content:[
-    {h:"Mandatory Nutrients (When Present at Detectable Levels)",
-     t:"The following nutrients must be declared when present at a detectable level: Calories, Calories from Fat (when fat is present), Total Fat, Saturated Fat, Trans Fat, Cholesterol, Sodium, Total Carbohydrate, Dietary Fiber, Sugars, Protein, Vitamin A, Vitamin C, Calcium, Iron.",
-     v:{type:"list",label:"Must Declare If Present",style:"blue",items:["Calories","Total Fat","Saturated Fat","Trans Fat","Cholesterol","Sodium","Total Carbohydrate","Dietary Fiber","Sugars","Protein","Vitamin A","Vitamin C","Calcium","Iron"]}},
-    {h:"Dietary Ingredients Without RDIs or DRVs",
-     t:"Dietary ingredients without Reference Daily Intakes (RDIs) or Daily Reference Values (DRVs)—such as herbs, botanicals, amino acids—must still be listed. They include quantity per serving but no % DV. A dagger symbol (†) is placed in the % DV column with footnote: '† Daily Value not established.'",
-     v:{type:"snippet",lines:[{b:true,t:"Amount Per Serving"},{t:"Echinacea (root) 400 mg   †"},{t:"Ginkgo Biloba (leaf) 120 mg   †"},{sep:true},{sm:true,t:"† Daily Value not established."}]}}
-   ]},
-  {id:"order",title:"Order of Nutrients on the Label",icon:"🔢",
-   tags:["order","sequence","list order","hierarchy","arrangement","placement","position"],
-   content:[
-    {h:"Required Listing Order",
-     t:"Nutrients with RDIs or DRVs must appear in the order specified in 21 CFR 101.36. Dietary ingredients without RDIs/DRVs follow immediately below, listed in the order they are prominent in the product or by weight.",
-     v:{type:"olist",label:"Required Order",items:["1. Calories","2. Calories from Fat","3. Total Fat","4. Saturated Fat","5. Trans Fat","6. Polyunsaturated Fat","7. Monounsaturated Fat","8. Cholesterol","9. Sodium","10. Potassium","11. Total Carbohydrate","12. Dietary Fiber","13. Soluble Fiber","14. Insoluble Fiber","15. Sugars","16. Sugar Alcohol","17. Other Carbohydrate","18. Protein","19. Vitamin A","20. Vitamin C","21. Calcium","22. Iron","23. [Other vitamins/minerals with RDIs]","24. [Dietary ingredients without RDIs/DRVs, by weight]"]}}
-   ]},
-  {id:"pct-dv",title:"% Daily Value (% DV)",icon:"%",
-   tags:["percent daily value","% dv","daily value","rdi","drv","reference","percentage","footnote"],
-   content:[
-    {h:"When % DV Must Be Declared",
-     t:"The % Daily Value must be declared for all nutrients with an established RDI or DRV. The % DV is based on a 2,000-calorie diet for vitamins and minerals with RDIs.",
-     v:{type:"snippet",lines:[{cols:true,l:"",r:"% Daily Value*"},{cols:true,l:"Vitamin C 60 mg",r:"67%"},{cols:true,l:"Calcium 200 mg",r:"20%"},{sep:true},{sm:true,t:"* Percent Daily Values are based on a 2,000 calorie diet."}]}},
-    {h:"No % DV — Dagger Symbol Required",
-     t:"For dietary ingredients without an RDI or DRV (e.g., herbs, botanicals, proprietary blends), use a dagger symbol (†) in the % DV column. The footnote '† Daily Value not established.' must appear at the bottom of the panel.",
-     v:{type:"snippet",lines:[{cols:true,l:"Ashwagandha Root 300 mg",r:"†"},{sep:true},{sm:true,t:"† Daily Value not established."}]}},
-    {h:"Rounding % DV",
-     t:"% DV values must be rounded to the nearest whole number. Values less than 2% may be expressed as an asterisk (*) with footnote. Zero may be used if the amount is less than 1%.",
-     v:{type:"table",headers:["% DV Calculated","Declared As"],rows:[["0.4%","0%"],["1.2%","*"],["2.4%","2%"],["67.4%","67%"],["100.6%","101%"]]}}
-   ]},
-  {id:"rounding",title:"Rounding Rules for Nutrient Amounts",icon:"🔣",
-   tags:["rounding","round","nearest","decimal","calories","fat","sodium","carbohydrate","protein","grams","milligrams","micrograms"],
-   content:[
-    {h:"Calorie Rounding",
-     t:"Rounded to nearest 5-calorie increment up to and including 50 calories; nearest 10-calorie increment above 50. Amounts less than 5 calories may be expressed as zero.",
-     v:{type:"table",headers:["Actual Calories","Declare As"],rows:[["3 cal","0"],["7 cal","5"],["23 cal","25"],["48 cal","50"],["53 cal","50"],["78 cal","80"],["104 cal","100"]]}},
-    {h:"Total Fat, Saturated Fat, Poly- & Monounsaturated Fat",
-     t:"Less than 0.5 g → 0 g. Between 0.5 g and 5 g → nearest 0.5 g. More than 5 g → nearest 1 g.",
-     v:{type:"table",headers:["Actual Amount","Declare As"],rows:[["0.3 g","0 g"],["0.7 g","0.5 g"],["1.2 g","1.0 g"],["6.4 g","6 g"]]}},
-    {h:"Cholesterol",
-     t:"Less than 2 mg → 0 mg. Between 2 mg and 5 mg → may declare as 'less than 5 mg.' More than 5 mg → nearest 5 mg increment.",v:null},
-    {h:"Sodium, Potassium",
-     t:"Less than 5 mg → 0 mg. Between 5 mg and 140 mg → nearest 5 mg. More than 140 mg → nearest 10 mg.",v:null},
-    {h:"Total Carbohydrate, Dietary Fiber, Sugars, Sugar Alcohol",
-     t:"Less than 0.5 g → 0 g. Between 0.5 g and 1 g → 'less than 1 g.' More than 1 g → nearest 1 g.",v:null},
-    {h:"Protein",
-     t:"Less than 0.5 g → 0 g. Between 0.5 g and 1 g → 'less than 1 g.' More than 1 g → nearest 1 g.",v:null},
-    {h:"Vitamins & Minerals (as % DV)",
-     t:"% DV rounded to nearest whole percent. Values less than 2% may be declared as '*' with footnote. Values of 0 may be used when analytically undetectable.",v:null},
-    {h:"Dietary Ingredients Without RDIs/DRVs — Units",
-     t:"Expressed in the unit appropriate to the ingredient. Weights are based on the ingredient as added to the product.",
-     v:{type:"table",headers:["Unit","Use When Amount Is"],rows:[["g (grams)","≥ 1 gram"],["mg (milligrams)","≥ 1 mg, < 1 gram"],["mcg (micrograms)","< 1 mg"]]}}
-   ]},
-  {id:"format",title:"Format & Type Size Requirements",icon:"🖨️",
-   tags:["format","type size","font","typeface","hairline","bold","print","size","layout","standard","simplified","tabular","linear"],
-   content:[
-    {h:"Standard Format",
-     t:"The Supplement Facts panel must use a single vertical column. A hairline rule separates the title from the rest. The title must be set in a larger type size. All text must provide sufficient contrast against the background.",
-     v:{type:"fullpanel"}},
-    {h:"Minimum Type Size",
-     t:"All information in the Supplement Facts panel must be in a type size no smaller than 6 points. All type within the panel must remain legible when the panel is reduced in size.",
-     v:{type:"typesize"}},
-    {h:"Simplified Format",
-     t:"May be used when 8 or fewer dietary ingredients are required to be listed. Omits the 'Amount Per Serving' column heading and uses a side-by-side layout.",v:null},
-    {h:"Tabular Format",
-     t:"May be used when the label has insufficient space for the vertical format and the total display area is 40 square inches or less.",v:null},
-    {h:"Linear Format",
-     t:"May be used only when the total display area is less than 12 square inches.",
-     v:{type:"box",label:"Linear Format Example (< 12 sq in)",content:"Supplement Facts: Serving Size 1 Tablet; Vitamin C 500 mg (556% DV); Zinc 10 mg (91% DV); Echinacea 200 mg (†). † Daily Value not established.",style:"neutral"}}
-   ]},
-  {id:"ingredients",title:"Ingredient List & Identity",icon:"📝",
-   tags:["ingredient list","ingredients","other ingredients","source","identity","botanical","herb","part","common name","proprietary blend"],
-   content:[
-    {h:"Identifying the Dietary Ingredient",
-     t:"The common or usual name of each dietary ingredient must be used. For botanical ingredients, the part of the plant used (e.g., root, leaf, stem, flower) must be identified. The Latin binomial name may be included in parentheses.",
-     v:{type:"snippet",lines:[{t:"Echinacea purpurea (root) 400 mg   †"},{t:"Ginkgo biloba (leaf) 120 mg   †"},{t:"Valerian (Valeriana officinalis) (root) 300 mg   †"}]}},
-    {h:"Proprietary Blends",
-     t:"A proprietary blend may be listed with a collective name. The total weight of the blend must be declared. Each ingredient within the blend must be listed in descending order by weight, but individual weights are not required.",
-     v:{type:"snippet",lines:[{t:"Antioxidant Blend  500 mg   †"},{t:"   Turmeric Root, Quercetin, Resveratrol,"},{t:"   Green Tea Leaf Extract"},{sep:true},{sm:true,t:"† Daily Value not established."}]}},
-    {h:"Other Ingredients",
-     t:"Ingredients that are not dietary ingredients (fillers, binders, coatings, flavors, colors) must be declared in an 'Other ingredients:' statement located outside the Supplement Facts panel, in descending order by weight.",
-     v:{type:"box",label:"Outside the Panel",content:"Other ingredients: Microcrystalline cellulose, vegetable capsule (hypromellose), magnesium stearate, silica.",style:"neutral"}}
-   ]},
-  {id:"placement",title:"Panel Placement on the Label",icon:"📦",
-   tags:["placement","location","information panel","principal display panel","PDP","where","position"],
-   content:[
-    {h:"Where the Supplement Facts Panel Must Appear",
-     t:"The Supplement Facts panel must appear on the information panel—the panel immediately to the right of the principal display panel (PDP). If insufficient space, it may appear on the next adjacent panel.",
-     v:{type:"bottle"}},
-    {h:"What the Information Panel Must Include",
-     t:"The Supplement Facts panel must be placed on the same panel as the ingredient list, name and address of the manufacturer/distributor, and net quantity of contents.",
-     v:{type:"list",label:"Information Panel Must Include:",style:"neutral",items:["Supplement Facts panel","Other ingredients list","Name & address of manufacturer/packer/distributor","Net quantity of contents"]}}
-   ]},
-  {id:"exemptions",title:"Small Businesses & Label Space Exemptions",icon:"🏷️",
-   tags:["exemption","small business","space","area","size","insufficient","small label"],
-   content:[
-    {h:"Insufficient Label Space — Permitted Formats",
-     t:"When the total display area is 40 sq in or less, tabular or simplified format may be used. When less than 12 sq in, the linear format may be used.",
-     v:{type:"table",headers:["Label Display Area","Permitted Format"],rows:[["> 40 sq in","Standard vertical format"],["≤ 40 sq in","Tabular or simplified format"],["< 12 sq in","Linear (string) format"]]}}
-   ]},
-  {id:"source",title:"Source Information & Forms of Nutrients",icon:"🌿",
-   tags:["source","form","as","ascorbic acid","citrate","gluconate","chemical form","nutrient form"],
-   content:[
-    {h:"Declaring the Form of a Nutrient",
-     t:"The chemical form of a vitamin or mineral may be declared in parentheses after the nutrient name. This is optional but strongly recommended for consumer transparency.",
-     v:{type:"snippet",lines:[{t:"Vitamin C (as ascorbic acid) 500 mg  556%"},{t:"Calcium (as calcium carbonate) 500 mg  50%"},{t:"Magnesium (as magnesium citrate) 200 mg  50%"}]}}
-   ]},
-  {id:"claims",title:"Structure/Function Claims & Disclaimers",icon:"⚠️",
-   tags:["claim","structure function","disclaimer","FDA","evaluated","statement","disease","diagnose","treat","cure","prevent"],
-   content:[
-    {h:"Required Disclaimer for Structure/Function Claims",
-     t:"If a structure/function claim is made on the label (e.g., 'supports immune health'), the following disclaimer must appear on the same panel as the claim.",
-     v:{type:"box",label:"Required Disclaimer",content:"These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",style:"warning"}},
-    {h:"Disclaimer Placement & Size",
-     t:"The disclaimer must be adjacent to the claim. It must be set in type no smaller than one-sixteenth of an inch (approx. 4.5 points) and must appear in a box outlined by a hairline rule.",
-     v:null}
-   ]}
+var DATA=[
+ {chap:"ch-general", chapTitle:"Chapter I — General Dietary Supplement Labeling", chapIcon:"📋", chapDesc:"Basic requirements applicable to all dietary supplement labels",
+  sections:[
+   {id:"g-definition",title:"What Is a Dietary Supplement?",icon:"💊",
+    tags:["definition","dietary supplement","section 201","ingredient","vitamin","mineral","herb","botanical","amino acid","concentrate","metabolite"],
+    items:[
+     {h:"Statutory Definition",
+      t:"A dietary supplement is a product intended to supplement the diet that bears or contains one or more of the following: a vitamin, mineral, herb or other botanical, amino acid, or a dietary substance used to supplement the diet by increasing total dietary intake, or a concentrate, metabolite, constituent, extract, or combination of any of the above. It must be intended for ingestion and is not represented as a conventional food or as a sole item of a meal or diet.",
+      v:{type:"list",style:"blue",label:"A dietary supplement must contain at least one of:",items:["Vitamin","Mineral","Herb or other botanical","Amino acid","Dietary substance to supplement the diet","Concentrate, metabolite, constituent, or extract of the above"]}},
+     {h:"Not a Dietary Supplement",
+      t:"A product is NOT a dietary supplement if it is represented as a conventional food, as the sole item of a meal or diet, or if it is an article approved as a new drug under section 505 of the FD&C Act (unless it was previously marketed as a dietary supplement).",
+      v:{type:"box",style:"warning",label:"⚠️ NOT a Dietary Supplement If:",content:"• Represented as a conventional food\n• Sole item of a meal or diet\n• Approved new drug (unless previously marketed as a supplement)"}}
+    ]},
+   {id:"g-label-req",title:"Mandatory Label Information",icon:"📝",
+    tags:["mandatory","required","label","statement of identity","net quantity","supplement facts","ingredients","manufacturer","address","directions","warnings"],
+    items:[
+     {h:"Six Required Label Elements",
+      t:"Every dietary supplement label must include all six of the following elements. The absence of any one element makes the product misbranded.",
+      v:{type:"list",style:"blue",label:"All Six Required on Every Label:",items:["1. Statement of identity (name of the supplement)","2. Net quantity of contents","3. Supplement Facts panel","4. Ingredient list ('Other ingredients')","5. Name and address of manufacturer, packer, or distributor","6. Directions for use (if needed for safe use)"]}},
+     {h:"Warnings",
+      t:"Warnings must be included if the product presents a safety concern. The statement 'KEEP OUT OF REACH OF CHILDREN' is strongly recommended and may be required for some products. Iron-containing supplements must bear the warning: 'WARNING: Accidental overdose of iron-containing products is a leading cause of fatal poisoning in children under 6. Keep this product out of reach of children. In case of accidental overdose, call a doctor or poison control center immediately.'",
+      v:{type:"box",style:"warning",label:"Required Warning — Iron-Containing Supplements:",content:"WARNING: Accidental overdose of iron-containing products is a leading cause of fatal poisoning in children under 6. Keep this product out of reach of children. In case of accidental overdose, call a doctor or poison control center immediately."}}
+    ]},
+   {id:"g-placement",title:"Label Panel Placement",icon:"📦",
+    tags:["placement","panel","principal display panel","PDP","information panel","location","where","front","back","side"],
+    items:[
+     {h:"Principal Display Panel (PDP)",
+      t:"The PDP is the portion of the label most likely to be seen by the consumer at the time of purchase. It must bear the statement of identity and the net quantity of contents. For cylindrical containers, the PDP is 40% of the total circumference.",
+      v:{type:"bottle"}},
+     {h:"Information Panel",
+      t:"The information panel is the label panel immediately to the right of the PDP (as the product faces the consumer). The Supplement Facts panel, other ingredients list, name and address, and directions must all appear on the information panel, unless there is insufficient space, in which case they may appear on subsequent panels. All mandatory information must appear prominently and conspicuously.",
+      v:{type:"list",style:"neutral",label:"Information Panel Must Contain:",items:["Supplement Facts panel","Other ingredients list","Name & address of manufacturer/packer/distributor","Directions for use","Warnings (if applicable)"]}}
+    ]}
+  ]},
+
+ {chap:"ch-identity", chapTitle:"Chapter II — Statement of Identity", chapIcon:"🏷️", chapDesc:"How to name and identify your dietary supplement on the label",
+  sections:[
+   {id:"id-statement",title:"Statement of Identity Requirements",icon:"🔤",
+    tags:["identity","name","statement of identity","common name","usual name","supplement","type","PDP","front panel","form"],
+    items:[
+     {h:"What the Statement of Identity Must Include",
+      t:"The statement of identity must appear on the PDP. It must identify the product as a 'dietary supplement' — this exact phrase or a description of the type of ingredient (e.g., 'herbal supplement,' 'vitamin C supplement,' 'calcium supplement') must appear prominently on the label. The word 'supplement' must appear in the statement of identity.",
+      v:{type:"snippet",lines:[{b:true,t:"Echinacea"},{t:"Herbal Supplement"},{t:"Standardized Extract"}]}},
+     {h:"Form of the Supplement",
+      t:"If the product is a specific form of a dietary ingredient (e.g., 'tablets,' 'capsules,' 'softgels,' 'powder,' 'liquid'), this may be stated as part of or immediately below the statement of identity.",
+      v:{type:"list",style:"neutral",label:"Common Acceptable Forms:",items:["Tablets","Capsules","Softgels","Liquid-filled capsules","Powder","Liquid","Gummies","Chewables"]}},
+     {h:"Type Size for Statement of Identity",
+      t:"The statement of identity must be in a type size reasonably related to the most prominent printed matter on the PDP and must be in lines generally parallel to the base of the package.",
+      v:null}
+    ]},
+   {id:"id-examples",title:"Statement of Identity Examples",icon:"✅",
+    tags:["examples","correct","incorrect","identity","name","label","wording"],
+    items:[
+     {h:"Correct and Incorrect Examples",
+      t:"The statement of identity must always include the word 'supplement' or a description that indicates the nature of the product's dietary ingredients.",
+      v:{type:"two-compare",
+         correct:{label:"✅ CORRECT",items:["Vitamin C Supplement","Calcium & Vitamin D Supplement","Herbal Supplement (Echinacea)","Omega-3 Fatty Acid Supplement","Probiotic Supplement"]},
+         wrong:{label:"❌ INCORRECT / INCOMPLETE",items:["Echinacea (no 'supplement' designation)","Immunity Booster (disease-like claim)","Super Greens (no dietary supplement declaration)","Daily Wellness (vague, no supplement ID)"]}}}
+    ]}
+  ]},
+
+ {chap:"ch-net", chapTitle:"Chapter III — Net Quantity of Contents", chapIcon:"⚖️", chapDesc:"Rules for declaring the amount of product in a container",
+  sections:[
+   {id:"net-general",title:"Net Quantity of Contents — General Rules",icon:"📏",
+    tags:["net quantity","net weight","contents","weight","volume","count","ounce","gram","liter","fluid","PDP","bottom","declaration"],
+    items:[
+     {h:"Location on Label",
+      t:"The net quantity of contents declaration must appear on the PDP, in the bottom 30% of the PDP, on a single line. It must be separated from other printed matter by a space equal to at least the height of the lettering used in the declaration.",
+      v:{type:"box",style:"neutral",label:"PDP Placement Rule",content:"Net quantity must appear:\n• On the Principal Display Panel\n• In the BOTTOM 30% of the PDP\n• On a single line\n• Separated from surrounding text by adequate space"}},
+     {h:"Dual Declaration Required",
+      t:"The net quantity must be expressed in both metric (SI) units AND U.S. customary (inch/pound) units. Metric must appear first in the declaration.",
+      v:{type:"table",headers:["Product Type","Example Declaration"],rows:[["Solid/semi-solid (by weight)","Net Wt 120 g (4.2 oz)"],["Liquid (by volume)","Net 240 mL (8 fl oz)"],["Tablets/capsules (by count)","90 Tablets"],["Capsules with weight","90 Capsules Net Wt 45 g (1.6 oz)"]]}}
+    ]},
+   {id:"net-type-size",title:"Net Quantity Type Size Requirements",icon:"🔡",
+    tags:["type size","font","net quantity","size","minimum","PDP","area","square inches"],
+    items:[
+     {h:"Minimum Type Size by PDP Area",
+      t:"The type size of the net quantity declaration depends on the area of the PDP. The larger the PDP, the larger the required minimum type size.",
+      v:{type:"table",headers:["PDP Area","Minimum Type Size"],rows:[["5 sq in or less","1/16 inch (4.5 pt)"],["More than 5 to 25 sq in","1/8 inch (9 pt)"],["More than 25 to 100 sq in","3/16 inch (13.5 pt)"],["More than 100 to 400 sq in","1/4 inch (18 pt)"],["More than 400 sq in","1/2 inch (36 pt)"]]}}
+    ]},
+   {id:"net-count",title:"Count-Based Products",icon:"🔢",
+    tags:["count","tablets","capsules","softgels","number","pieces","quantity","units"],
+    items:[
+     {h:"Declaring by Count",
+      t:"When dietary supplements are individual units (tablets, capsules, packets), the net quantity may be expressed as a count (e.g., '60 tablets'). If the count is used alone, no weight or volume statement is required, but a weight or volume may be added in parentheses.",
+      v:{type:"snippet",lines:[{b:true,t:"Net Qty: 60 Softgel Capsules"},{t:"or"},{b:true,t:"90 Tablets (Net Wt 135 g / 4.76 oz)"}]}}
+    ]}
+  ]},
+
+ {chap:"ch-nutrition", chapTitle:"Chapter IV — Nutrition Labeling (Supplement Facts)", chapIcon:"🧪", chapDesc:"Complete rules for the Supplement Facts panel — the core of 21 CFR §101.36",
+  sections:[
+   {id:"n-title",title:"'Supplement Facts' Title & Format",icon:"🗂️",
+    tags:["supplement facts","title","format","hairline","bold","type size","heading","panel"],
+    items:[
+     {h:"Title Must Read 'Supplement Facts'",
+      t:"The panel must be titled 'Supplement Facts' — not 'Nutrition Facts.' The title must be set in a type size larger than any other print in the panel and must be separated from the rest of the panel by a hairline rule.",
+      v:{type:"fullpanel"}},
+     {h:"Standard Vertical Format",
+      t:"The standard format is a single vertical column. A heavy rule (8-point) separates the calorie declaration from nutrients below it. Hairline rules separate most other rows. The title 'Supplement Facts' appears at the top in the largest type.",
+      v:null}
+    ]},
+   {id:"n-serving",title:"Serving Size & Servings Per Container",icon:"🥄",
+    tags:["serving size","servings per container","household measure","metric","tablet","capsule","teaspoon","fraction"],
+    items:[
+     {h:"Declaring Serving Size",
+      t:"Serving size must be declared as the common household measure most appropriate for the supplement (e.g., '1 tablet,' '2 capsules,' '1 teaspoon'). The metric equivalent must appear in parentheses immediately after. Serving size must reflect the amount customarily consumed.",
+      v:{type:"snippet",lines:[{b:true,t:"Supplement Facts"},{t:"Serving Size 2 Capsules (1.4 g)"},{t:"Servings Per Container 45"}]}},
+     {h:"Rounding Servings Per Container",
+      t:"If servings per container is not a whole number greater than 1, round to the nearest whole number. If less than or equal to 1, express as a fraction (e.g., '½ serving').",
+      v:{type:"table",headers:["Calculated Servings","Declare As"],rows:[["1.2","1"],["2.6","3"],["0.8","½"],["30.4","30"]]}}
+    ]},
+   {id:"n-required",title:"Required Nutrients — When to Declare",icon:"📋",
+    tags:["required","mandatory","nutrients","calories","fat","sodium","carbohydrate","protein","vitamin","mineral","detectable","zero"],
+    items:[
+     {h:"Must Be Declared When Present at Detectable Levels",
+      t:"The following nutrients must be declared in the Supplement Facts panel when they are present at detectable levels in the product. If a nutrient is not present, it may be omitted. If present but at a level that would round to zero, it may be declared as zero or omitted.",
+      v:{type:"list",style:"blue",label:"Declare If Present at Detectable Level:",items:["Calories","Calories from Fat (when fat is present)","Total Fat","Saturated Fat","Trans Fat","Cholesterol","Sodium","Total Carbohydrate","Dietary Fiber","Sugars","Protein","Vitamin A","Vitamin C","Calcium","Iron"]}},
+     {h:"Voluntary Nutrients",
+      t:"The following may be voluntarily declared if present: Calories from Saturated Fat, Polyunsaturated Fat, Monounsaturated Fat, Potassium, Soluble Fiber, Insoluble Fiber, Sugar Alcohols, Other Carbohydrates, Percent Vitamin A as Beta-Carotene, and other vitamins and minerals with established RDIs.",
+      v:null}
+    ]},
+   {id:"n-order",title:"Required Order of Nutrients",icon:"🔢",
+    tags:["order","sequence","list order","position","arrangement","hierarchy"],
+    items:[
+     {h:"Mandatory Listing Order",
+      t:"All nutrients must appear in the following order. Dietary ingredients without RDIs/DRVs are listed below all RDI/DRV nutrients, in order of predominance by weight.",
+      v:{type:"olist",label:"Required Order in Supplement Facts Panel",items:["1. Calories","2. Calories from Fat","3. Total Fat","4. Saturated Fat","5. Trans Fat","6. Polyunsaturated Fat (voluntary)","7. Monounsaturated Fat (voluntary)","8. Cholesterol","9. Sodium","10. Potassium (voluntary)","11. Total Carbohydrate","12. Dietary Fiber","13. Soluble Fiber (voluntary)","14. Insoluble Fiber (voluntary)","15. Sugars","16. Sugar Alcohol (voluntary)","17. Other Carbohydrate (voluntary)","18. Protein","19. Vitamin A","20. Vitamin C","21. Calcium","22. Iron","23. Other vitamins/minerals (with RDIs, in order of RDI table)","24. Dietary ingredients without RDIs/DRVs (by weight, descending)"]}}
+    ]},
+   {id:"n-rounding",title:"Rounding Rules — All Nutrients",icon:"🔣",
+    tags:["rounding","round","nearest","calories","fat","sodium","carbohydrate","protein","grams","milligrams","micrograms","decimal","zero"],
+    items:[
+     {h:"Calories",t:"≤ 5 cal: express as 0. 5–50 cal: round to nearest 5. > 50 cal: round to nearest 10.",
+      v:{type:"table",headers:["Actual","Declare As"],rows:[["3","0"],["7","5"],["23","25"],["48","50"],["53","50"],["78","80"],["104","100"]]}},
+     {h:"Total Fat, Saturated Fat, Trans Fat, Poly-, Monounsaturated Fat",
+      t:"< 0.5 g: express as 0. 0.5 g to 5 g: round to nearest 0.5 g. > 5 g: round to nearest 1 g.",
+      v:{type:"table",headers:["Actual","Declare As"],rows:[["0.3 g","0 g"],["0.7 g","0.5 g"],["1.2 g","1.0 g"],["3.8 g","4.0 g"],["6.4 g","6 g"]]}},
+     {h:"Cholesterol",t:"< 2 mg: express as 0. 2–5 mg: may declare as 'less than 5 mg.' > 5 mg: round to nearest 5 mg.",v:null},
+     {h:"Sodium & Potassium",t:"< 5 mg: 0. 5–140 mg: nearest 5 mg. > 140 mg: nearest 10 mg.",v:null},
+     {h:"Total Carbohydrate, Dietary Fiber, Sugars, Sugar Alcohols",t:"< 0.5 g: 0. 0.5–1 g: 'less than 1 g.' > 1 g: nearest 1 g.",v:null},
+     {h:"Protein",t:"< 0.5 g: 0. 0.5–1 g: 'less than 1 g.' > 1 g: nearest 1 g.",v:null},
+     {h:"% Daily Value Rounding",
+      t:"Round to nearest whole %. Values < 2%: may use '*' with footnote 'Contains less than 2% of the Daily Value.' Values < 1%: may declare as 0%.",
+      v:{type:"table",headers:["% DV Calculated","Declare As"],rows:[["0.4%","0%"],["1.2%","*"],["2.4%","2%"],["67.4%","67%"],["100.6%","101%"]]}}
+    ]},
+   {id:"n-dv",title:"% Daily Value — Rules & Footnotes",icon:"%",
+    tags:["percent daily value","% dv","daily value","rdi","drv","footnote","dagger","established","2000 calorie"],
+    items:[
+     {h:"When to Declare % DV",
+      t:"% DV must be declared for all nutrients with an established RDI or DRV. For nutrients without an RDI or DRV (herbs, botanicals, etc.), a dagger symbol (†) is placed in the % DV column.",
+      v:{type:"snippet",lines:[{cols:true,l:"Vitamin C (as ascorbic acid) 500 mg",r:"556%"},{cols:true,l:"Calcium 200 mg",r:"20%"},{cols:true,l:"Elderberry Extract 200 mg",r:"†"},{sep:true},{sm:true,t:"* Percent Daily Values based on a 2,000 calorie diet."},{sm:true,t:"† Daily Value not established."}]}},
+     {h:"Required Footnote",
+      t:"When % DVs based on a 2,000-calorie diet are declared, the footnote '* Percent Daily Values are based on a 2,000 calorie diet' must appear at the bottom of the panel, separated by a hairline rule.",v:null},
+     {h:"Dagger Footnote",
+      t:"When any dietary ingredient without an RDI/DRV is listed, the footnote '† Daily Value not established.' must appear at the bottom of the panel.",v:null}
+    ]},
+   {id:"n-formats",title:"Alternative Panel Formats",icon:"📐",
+    tags:["format","simplified","tabular","linear","small label","40 square inches","12 square inches","space"],
+    items:[
+     {h:"Format by Label Size",
+      t:"The format required depends on the total label display area. Standard format is always acceptable. Alternatives may be used when space is limited.",
+      v:{type:"table",headers:["Total Display Area","Permitted Format"],rows:[["> 40 sq in","Standard vertical format (required)"],["≤ 40 sq in","Tabular or simplified format permitted"],["< 12 sq in","Linear (string) format permitted"]]}},
+     {h:"Linear Format Example",
+      t:"When total display area is less than 12 square inches, a linear (string) format listing all required information in a continuous string is permitted.",
+      v:{type:"box",style:"neutral",label:"Linear Format Example",content:'Supplement Facts: Serving Size 1 Tablet; Vitamin C 500 mg 556% DV; Zinc 10 mg 91% DV; Echinacea 200 mg †DV. †Daily Value not established.'}}
+    ]},
+   {id:"n-typesize",title:"Type Size Within the Panel",icon:"🔡",
+    tags:["type size","font","minimum","6 point","size","legible","print","contrast"],
+    items:[
+     {h:"Minimum 6-Point Type",
+      t:"All information within the Supplement Facts panel must be printed in a type size no smaller than 6 points. The title 'Supplement Facts' must be in the largest type in the panel. All text must have sufficient contrast to be easily legible.",
+      v:{type:"typesize"}}
+    ]}
+  ]},
+
+ {chap:"ch-ingredients", chapTitle:"Chapter V — Ingredient Labeling", chapIcon:"🌿", chapDesc:"Rules for listing dietary ingredients, botanical parts, proprietary blends, and other ingredients",
+  sections:[
+   {id:"ing-identity",title:"Identifying Dietary Ingredients",icon:"🔬",
+    tags:["ingredient","identity","botanical","herb","plant part","root","leaf","stem","flower","seed","common name","latin","binomial"],
+    items:[
+     {h:"Common or Usual Name Required",
+      t:"The common or usual name of each dietary ingredient must be used. Trade names alone are not acceptable. For botanical ingredients, the common name of the plant must be used.",
+      v:{type:"snippet",lines:[{t:"Echinacea purpurea (root) 400 mg   †"},{t:"Ginkgo biloba (leaf extract) 120 mg   †"},{t:"Valerian (Valeriana officinalis)(root) 300 mg   †"}]}},
+     {h:"Botanical Part Must Be Identified",
+      t:"For botanical dietary ingredients, the part of the plant used must be declared (e.g., root, leaf, stem, bark, flower, seed, fruit, aerial parts). The Latin binomial may be included in parentheses but is not required.",
+      v:{type:"table",headers:["Common Name","Part Declared","Acceptable?"],rows:[["Echinacea (root)","root","✅ Yes"],["Ginkgo (leaf)","leaf","✅ Yes"],["Echinacea","(none)","❌ No — part required"],["St. John's Wort","aerial parts","✅ Yes"]]}},
+     {h:"Chemical Form of Vitamins and Minerals",
+      t:"The chemical form of a vitamin or mineral may be declared in parentheses after the nutrient name. This is optional but strongly recommended.",
+      v:{type:"snippet",lines:[{t:"Vitamin C (as ascorbic acid) 500 mg  556%"},{t:"Calcium (as calcium carbonate) 500 mg  50%"},{t:"Magnesium (as magnesium citrate) 200 mg  50%"},{t:"Zinc (as zinc gluconate) 15 mg  136%"}]}}
+    ]},
+   {id:"ing-blend",title:"Proprietary Blends",icon:"🧬",
+    tags:["proprietary blend","blend","trade secret","total weight","individual weights","descending","order","collective name"],
+    items:[
+     {h:"Proprietary Blend Requirements",
+      t:"A proprietary blend is a combination of dietary ingredients that may be listed under a single collective name. The requirements are: (1) the collective name must include the word 'blend,' 'complex,' 'matrix,' or similar; (2) the total weight of the blend must be declared; (3) each ingredient within the blend must be listed in descending order by weight; (4) individual ingredient amounts within the blend are NOT required.",
+      v:{type:"snippet",lines:[{t:"Immune Support Blend  650 mg   †"},{t:"  Echinacea purpurea (root),"},{t:"  Elderberry Extract,"},{t:"  Vitamin C (as ascorbic acid),"},{t:"  Zinc (as zinc gluconate)"},{sep:true},{sm:true,t:"† Daily Value not established."}]}},
+     {h:"What You Cannot Do",
+      t:"You cannot list individual ingredients of a proprietary blend out of order by weight. You cannot fail to declare the total weight. You cannot use a name that implies a disease claim.",
+      v:{type:"box",style:"warning",label:"⚠️ Proprietary Blend Rules:",content:"✅ Must declare total weight of the blend\n✅ Must list ingredients in descending order by weight\n✅ Individual amounts NOT required\n❌ Cannot list ingredients out of weight order\n❌ Cannot omit the total blend weight\n❌ Collective name cannot imply a disease claim"}}
+    ]},
+   {id:"ing-other",title:"'Other Ingredients' Statement",icon:"📄",
+    tags:["other ingredients","excipients","fillers","binders","coatings","flavors","colors","outside panel","descending"],
+    items:[
+     {h:"What Goes in 'Other Ingredients'",
+      t:"Ingredients that are NOT dietary ingredients — such as binders, fillers, coatings, lubricants, flavors, colors, and preservatives — must be listed in an 'Other ingredients:' statement. This statement appears OUTSIDE and BELOW the Supplement Facts panel.",
+      v:{type:"box",style:"neutral",label:"Other Ingredients Statement (Outside Panel):",content:"Other ingredients: Microcrystalline cellulose, vegetable capsule (hypromellose), magnesium stearate, silicon dioxide, rice flour."}},
+     {h:"Order and Format",
+      t:"Other ingredients must be listed in descending order of predominance by weight. The statement must use the term 'Other ingredients:' as the heading.",
+      v:null},
+     {h:"Allergen Labeling",
+      t:"Major food allergens (milk, eggs, fish, shellfish, tree nuts, wheat, peanuts, soybeans, sesame) must be declared on dietary supplement labels. This can be done by: (1) including the allergen in the ingredient name (e.g., 'whey (milk)'), or (2) a separate 'Contains:' statement immediately after the ingredient list.",
+      v:{type:"box",style:"warning",label:"Allergen Declaration Example:",content:"Other ingredients: Whey protein concentrate (milk), soy lecithin, gelatin.\n\nContains: Milk, Soy"}}
+    ]},
+   {id:"ing-color",title:"Color Additives",icon:"🎨",
+    tags:["color","color additive","artificial color","FD&C","certified","exempt","caramel","beet"],
+    items:[
+     {h:"Declaring Color Additives",
+      t:"Certified color additives (FD&C colors) must be declared by their specific name (e.g., 'FD&C Blue No. 1'). Color additives exempt from certification may be declared as 'artificial color' or by their common name (e.g., 'caramel color,' 'beet juice color').",
+      v:{type:"table",headers:["Color Type","Declare As"],rows:[["FD&C Red No. 40","FD&C Red No. 40 (exact name required)"],["FD&C Blue No. 1","FD&C Blue No. 1 (exact name required)"],["Caramel","caramel color or artificial color"],["Beet juice","beet juice color or artificial color"]]}}
+    ]}
+  ]},
+
+ {chap:"ch-claims", chapTitle:"Chapter VI — Claims", chapIcon:"💬", chapDesc:"Rules for nutrient content claims, health claims, structure/function claims, and required disclaimers",
+  sections:[
+   {id:"cl-sf",title:"Structure/Function Claims",icon:"⚙️",
+    tags:["structure function","claim","disclaimer","FDA","evaluated","not evaluated","disease","body structure","body function","notification"],
+    items:[
+     {h:"What Is a Structure/Function Claim?",
+      t:"A structure/function claim describes the role of a dietary ingredient in affecting the normal structure or function of the human body (e.g., 'Vitamin C supports immune function,' 'Calcium builds strong bones'). It must NOT imply treatment, cure, mitigation, or prevention of a disease.",
+      v:{type:"two-compare",
+         correct:{label:"✅ Acceptable Structure/Function Claims",items:["Supports immune health","Helps maintain healthy cholesterol levels already in the normal range","Promotes digestive health","Helps maintain healthy blood pressure already in the normal range","Supports bone health"]},
+         wrong:{label:"❌ Not Acceptable — Disease Claims",items:["Treats high cholesterol","Cures digestive disease","Prevents osteoporosis","Reduces risk of hypertension","Treats immune deficiency"]}}},
+     {h:"Required Disclaimer",
+      t:"Any product bearing a structure/function claim MUST display the following disclaimer prominently, in a box, on the same label panel as the claim. It must be in type no smaller than 1/16 inch (approximately 4.5 points).",
+      v:{type:"box",style:"warning",label:"REQUIRED DISCLAIMER (must appear in a box):",content:"These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."}},
+     {h:"FDA Notification Required",
+      t:"Manufacturers must notify FDA no later than 30 days after first marketing a product with a structure/function claim. The notification must include the text of the claim.",
+      v:null}
+    ]},
+   {id:"cl-nc",title:"Nutrient Content Claims",icon:"📊",
+    tags:["nutrient content claim","high","good source","low","free","reduced","less","more","light","excellent source","lean"],
+    items:[
+     {h:"What Is a Nutrient Content Claim?",
+      t:"A nutrient content claim expressly or implicitly characterizes the level of a nutrient in a product (e.g., 'high in calcium,' 'good source of vitamin C,' 'low sodium'). Only claims defined by FDA regulation are permitted.",
+      v:{type:"table",headers:["Claim","Requirement"],rows:[["High / Excellent source of","≥ 20% DV per serving"],["Good source of","10–19% DV per serving"],["More / Added / Extra / Plus","≥ 10% DV more than reference food"],["Free (e.g., fat free)","Negligible amount per serving"],["Low (e.g., low sodium)","Defined threshold per serving (varies by nutrient)"],["Reduced / Less","≥ 25% less than reference food"],["Light / Lite","1/3 fewer calories or 50% less fat than reference"]]}},
+     {h:"Implied Nutrient Content Claims",
+      t:"Claims that imply a nutrient level without using a defined term are also regulated. For example, 'healthy' implies the product meets certain nutrient requirements. The label must be consistent with all applicable regulatory definitions.",v:null}
+    ]},
+   {id:"cl-health",title:"Authorized Health Claims",icon:"🏥",
+    tags:["health claim","authorized","disease","calcium","osteoporosis","sodium","hypertension","fat","cancer","folic acid","neural tube","fiber","heart"],
+    items:[
+     {h:"What Is an Authorized Health Claim?",
+      t:"An authorized health claim describes a relationship between a food substance and a disease or health-related condition. Health claims must be pre-approved by FDA and may only be made if the evidence meets the 'significant scientific agreement' standard.",
+      v:{type:"list",style:"green",label:"FDA-Authorized Health Claims (Examples):",items:["Calcium, Vitamin D, and osteoporosis","Sodium and hypertension","Dietary fat and cancer","Dietary saturated fat and cholesterol and risk of coronary heart disease","Fiber-containing grain products, fruits, and vegetables and cancer","Fruits, vegetables, and grain products containing fiber and risk of coronary heart disease","Fruits and vegetables and cancer","Folic acid and neural tube defects","Dietary non-cariogenic carbohydrate sweeteners and dental caries","Soluble fiber from certain foods and risk of coronary heart disease","Soy protein and risk of coronary heart disease","Plant sterol/stanol esters and risk of coronary heart disease","Whole grain foods and risk of heart disease and certain cancers","Potassium and the risk of high blood pressure and stroke","Fluoridated water and reduced risk of dental caries"]}},
+     {h:"Authorized Health Claim Format",
+      t:"Health claims must use the exact language specified in the FDA regulation, or language sufficiently similar to carry the same meaning. They must not imply that the substance alone, without a healthy diet, will produce the claimed benefit.",v:null}
+    ]},
+   {id:"cl-qualified",title:"Qualified Health Claims",icon:"🔬",
+    tags:["qualified health claim","emerging evidence","significant scientific agreement","disclaimer","SSA","petition","limited evidence"],
+    items:[
+     {h:"What Is a Qualified Health Claim?",
+      t:"A qualified health claim is based on emerging scientific evidence that does not meet the 'significant scientific agreement' standard for authorized health claims. Qualified health claims must be accompanied by a disclaimer that qualifies the strength of the evidence.",
+      v:{type:"box",style:"neutral",label:"Example Qualified Health Claim with Disclaimer:",content:"Supportive but not conclusive research shows that eating 1.5 ounces per day of nuts, as part of a diet low in saturated fat and cholesterol, may reduce the risk of heart disease. [See nutrition information for fat content.]"}},
+     {h:"How Qualified Health Claims Are Authorized",
+      t:"Manufacturers may petition FDA to use a qualified health claim. FDA evaluates the totality of evidence and issues a letter of enforcement discretion specifying the exact claim language and required disclaimer. Claims cannot be used without this FDA authorization.",
+      v:null},
+     {h:"Ranking of Evidence",
+      t:"FDA ranks the scientific evidence supporting qualified health claims and requires corresponding disclaimers that reflect the strength of evidence.",
+      v:{type:"table",headers:["Evidence Level","Required Qualifier Language (Example)"],rows:[["High (but below SSA)","Some scientific evidence suggests..."],["Moderate","Limited evidence suggests..."],["Low","Very limited and preliminary scientific research suggests..."],["Very Low","FDA concludes that there is little scientific evidence supporting this claim"]]}}
+    ]}
+  ]},
+
+ {chap:"ch-ndi", chapTitle:"Chapter VII — New Dietary Ingredients (NDI)", chapIcon:"🆕", chapDesc:"Premarket notification requirements for new dietary ingredients",
+  sections:[
+   {id:"ndi-def",title:"What Is a New Dietary Ingredient?",icon:"🧪",
+    tags:["new dietary ingredient","NDI","premarket","notification","1994","DSHEA","marketed","old","pre-DSHEA"],
+    items:[
+     {h:"Definition",
+      t:"A new dietary ingredient (NDI) is a dietary ingredient that was not marketed in the United States before October 15, 1994 (the date DSHEA was enacted). Any dietary ingredient first marketed after that date is considered an NDI.",
+      v:{type:"box",style:"neutral",label:"Key Date:",content:"October 15, 1994 — dietary ingredients marketed in the U.S. before this date are NOT NDIs and do not require premarket notification."}},
+     {h:"NDI Notification Requirement",
+      t:"Before marketing a dietary supplement containing an NDI, the manufacturer or distributor must submit a premarket safety notification to FDA at least 75 days before introducing the product into interstate commerce. The notification must include: the name of the NDI, a description of the dietary supplement, conditions of use, history of use or other safety evidence, and a basis for concluding that the supplement will reasonably be expected to be safe.",
+      v:{type:"list",style:"yellow",label:"NDI Notification Must Include:",items:["Name of the NDI","Complete description of the dietary supplement","Conditions of use recommended or suggested in the labeling","History of use or other evidence of safety","Basis for the manufacturer's conclusion of safety"]}}
+    ]},
+   {id:"ndi-exempt",title:"NDI Notification Exemptions",icon:"✅",
+    tags:["exemption","not required","old ingredient","pre-1994","present in food","notification","DSHEA"],
+    items:[
+     {h:"When Notification Is NOT Required",
+      t:"NDI notification is not required if: (1) the dietary ingredient has been present in the food supply as an article used for food in a form in which the food has not been chemically altered, OR (2) the dietary ingredient was marketed as a dietary supplement in the U.S. before October 15, 1994.",
+      v:null}
+    ]}
+  ]},
+
+ {chap:"ch-other", chapTitle:"Chapter VIII — Other Labeling Information", chapIcon:"ℹ️", chapDesc:"Additional required labeling: manufacturer information, directions, expiration, country of origin, and more",
+  sections:[
+   {id:"oth-mfr",title:"Manufacturer / Distributor Name & Address",icon:"🏢",
+    tags:["manufacturer","distributor","packer","name","address","place of business","responsible party","contact"],
+    items:[
+     {h:"Required Information",
+      t:"The label must bear the name and place of business (including street address, city, state, and ZIP code) of the manufacturer, packer, or distributor. The street address may be omitted if it is listed in a current city or telephone directory.",
+      v:{type:"snippet",lines:[{t:"Manufactured by: ABC Supplements, Inc."},{t:"123 Wellness Way, Suite 100"},{t:"Austin, TX 78701"},{sep:true},{t:"or"},{sep:true},{t:"Distributed by: XYZ Nutrition LLC"},{t:"Chicago, IL 60601"}]}},
+     {h:"'Manufactured For' vs. 'Manufactured By'",
+      t:"If the label bears the name of a distributor rather than the manufacturer, the label must use a phrase such as 'Manufactured for [Distributor Name]' or 'Distributed by [Distributor Name]' to indicate the relationship.",v:null}
+    ]},
+   {id:"oth-directions",title:"Directions for Use",icon:"📖",
+    tags:["directions","use","dosage","how to use","serving","instructions","recommended","daily","safe use"],
+    items:[
+     {h:"When Directions Are Required",
+      t:"Directions for use must be included on the label if they are necessary for safe use of the product. Even when not strictly required, directions are strongly recommended and are standard practice. Directions must include the recommended serving size, frequency, and any conditions of use (e.g., 'take with food,' 'do not exceed recommended dose').",
+      v:{type:"box",style:"neutral",label:"Example Directions Statement:",content:"Directions: As a dietary supplement, take 2 capsules daily with a meal, or as directed by a healthcare practitioner. Do not exceed 4 capsules per day."}}
+    ]},
+   {id:"oth-warnings",title:"Warnings & Cautions",icon:"⚠️",
+    tags:["warning","caution","keep out","children","iron","overdose","pregnant","nursing","medication","physician","side effect"],
+    items:[
+     {h:"General Warning Recommendation",
+      t:"The statement 'KEEP OUT OF REACH OF CHILDREN' is recommended on all dietary supplement labels and is required by some state regulations.",
+      v:{type:"box",style:"warning",label:"Recommended on All Labels:",content:"KEEP OUT OF REACH OF CHILDREN"}},
+     {h:"Iron-Containing Supplement Warning (Required)",
+      t:"Any supplement containing iron must bear the following warning, in a prominent and conspicuous location:",
+      v:{type:"box",style:"warning",label:"REQUIRED — Iron-Containing Supplements:",content:"WARNING: Accidental overdose of iron-containing products is a leading cause of fatal poisoning in children under 6. Keep this product out of reach of children. In case of accidental overdose, call a doctor or poison control center immediately."}},
+     {h:"Other Common Warnings",
+      t:"The following warnings are commonly included based on the product's ingredients and target consumer:",
+      v:{type:"list",style:"yellow",label:"Common (Often Required) Warnings:",items:["Consult a healthcare provider before use if pregnant, nursing, taking medications, or have a medical condition","Not intended for use by persons under 18","Discontinue use and consult a healthcare provider if adverse reactions occur","Do not exceed recommended dose","This product contains [stimulant/herb] — do not use if sensitive to caffeine/stimulants"]}}
+    ]},
+   {id:"oth-expiration",title:"Expiration Dating",icon:"📅",
+    tags:["expiration","expiry","best by","use by","shelf life","date","freshness"],
+    items:[
+     {h:"Expiration Date Rules",
+      t:"FDA does not require expiration dates on dietary supplements, but if an expiration date is declared it must be truthful and substantiated. If declared, it must appear in a manner that is easily understood. If a 'best by' or 'use by' date is included, the manufacturer is responsible for ensuring the product meets label claims through that date.",
+      v:{type:"box",style:"neutral",label:"If You Include an Expiration Date:",content:"• Must be truthful and substantiated by stability testing\n• Must appear in an easily understood format (e.g., 'Exp: 12/2026' or 'Best By Dec 2026')\n• Product must meet all label claims through the declared date\n• Lot number is strongly recommended alongside expiration date"}}
+    ]},
+   {id:"oth-origin",title:"Country of Origin",icon:"🌍",
+    tags:["country of origin","made in","imported","domestic","foreign","COOL","customs"],
+    items:[
+     {h:"Country of Origin",
+      t:"Country of origin labeling is required for imported dietary supplement products under U.S. Customs regulations. Products imported from another country must declare the country of origin on the label (e.g., 'Made in USA,' 'Product of Canada,' 'Imported from Germany').",
+      v:null}
+    ]}
+  ]},
+
+ {chap:"ch-dvadults", chapTitle:"Appendix B — Daily Values: Adults & Children ≥ 4 Years", chapIcon:"📊", chapDesc:"Reference Daily Intakes (RDIs) used to calculate % Daily Value for adults and children 4 or more years of age",
+  sections:[
+   {id:"dv-adults",title:"Daily Values — Adults & Children ≥ 4 Years",icon:"📋",
+    tags:["daily value","RDI","DRV","adults","children","4 years","reference","percent","% DV","nutrient","vitamin","mineral","table"],
+    items:[
+     {h:"Reference Daily Intakes (RDIs) for Vitamins & Minerals",
+      t:"These are the values used to calculate % Daily Value for adults and children 4 years of age and older. All % DV calculations on supplement labels for this population must use these values.",
+      v:{type:"table",headers:["Nutrient","Daily Value","Unit"],rows:[
+        ["Vitamin A","900","mcg RAE"],["Vitamin C","90","mg"],["Vitamin D","20","mcg"],["Vitamin E","15","mg AT"],
+        ["Vitamin K","120","mcg"],["Thiamin (B1)","1.2","mg"],["Riboflavin (B2)","1.3","mg"],["Niacin","16","mg NE"],
+        ["Vitamin B6","1.7","mg"],["Folate","400","mcg DFE"],["Vitamin B12","2.4","mcg"],["Biotin","30","mcg"],
+        ["Pantothenic Acid","5","mg"],["Choline","550","mg"],["Calcium","1300","mg"],["Chromium","35","mcg"],
+        ["Copper","0.9","mg"],["Iodine","150","mcg"],["Iron","18","mg"],["Magnesium","420","mg"],
+        ["Manganese","2.3","mg"],["Molybdenum","45","mcg"],["Phosphorus","1250","mg"],["Potassium","4700","mg"],
+        ["Selenium","55","mcg"],["Sodium","2300","mg"],["Zinc","11","mg"],["Chloride","2300","mg"]
+      ]}},
+     {h:"Daily Reference Values (DRVs) for Macronutrients",
+      t:"These DRVs are used for macronutrients and are based on a 2,000-calorie diet for adults and children 4 years and older.",
+      v:{type:"table",headers:["Nutrient","Daily Value","Unit"],rows:[
+        ["Total Fat","78","g"],["Saturated Fat","20","g"],["Cholesterol","300","mg"],["Sodium","2300","mg"],
+        ["Total Carbohydrate","275","g"],["Dietary Fiber","28","g"],["Total Sugars","50","g (added)"],["Protein","50","g"]
+      ]}}
+    ]}
+  ]},
+
+ {chap:"ch-dvinfants", chapTitle:"Appendix C — Daily Values: Infants, Children < 4 Years & Pregnant/Lactating", chapIcon:"👶", chapDesc:"Reference Daily Intakes for infants, children under 4, and pregnant or lactating women",
+  sections:[
+   {id:"dv-infant",title:"Daily Values — Infants (Birth to 12 Months)",icon:"🍼",
+    tags:["infants","baby","birth","12 months","daily value","RDI","infant formula","supplement"],
+    items:[
+     {h:"RDIs for Infants",
+      t:"These values apply to supplements intended for infants (birth through 12 months). Labels must specify this population if using these values.",
+      v:{type:"table",headers:["Nutrient","Daily Value","Unit"],rows:[
+        ["Vitamin A","500","mcg RAE"],["Vitamin C","50","mg"],["Vitamin D","10","mcg"],["Vitamin E","5","mg AT"],
+        ["Vitamin K","2.5","mcg"],["Thiamin","0.3","mg"],["Riboflavin","0.4","mg"],["Niacin","4","mg NE"],
+        ["Vitamin B6","0.3","mg"],["Folate","80","mcg DFE"],["Vitamin B12","0.5","mcg"],["Biotin","6","mcg"],
+        ["Pantothenic Acid","1.8","mg"],["Calcium","260","mg"],["Iron","11","mg"],["Magnesium","75","mg"],
+        ["Phosphorus","275","mg"],["Zinc","3","mg"],["Selenium","20","mcg"],["Copper","0.2","mg"],["Iodine","130","mcg"]
+      ]}}
+    ]},
+   {id:"dv-children",title:"Daily Values — Children 1–3 Years",icon:"🧒",
+    tags:["children","toddler","1 year","2 year","3 year","under 4","daily value","RDI"],
+    items:[
+     {h:"RDIs for Children 1–3 Years",
+      t:"These values apply to supplements intended for children 1 through 3 years of age.",
+      v:{type:"table",headers:["Nutrient","Daily Value","Unit"],rows:[
+        ["Vitamin A","300","mcg RAE"],["Vitamin C","15","mg"],["Vitamin D","15","mcg"],["Vitamin E","6","mg AT"],
+        ["Vitamin K","30","mcg"],["Thiamin","0.5","mg"],["Riboflavin","0.5","mg"],["Niacin","6","mg NE"],
+        ["Vitamin B6","0.5","mg"],["Folate","150","mcg DFE"],["Vitamin B12","0.9","mcg"],["Biotin","8","mcg"],
+        ["Pantothenic Acid","2","mg"],["Calcium","700","mg"],["Iron","7","mg"],["Magnesium","80","mg"],
+        ["Phosphorus","460","mg"],["Zinc","3","mg"],["Selenium","20","mcg"],["Copper","0.34","mg"],["Iodine","90","mcg"]
+      ]}}
+    ]},
+   {id:"dv-preg",title:"Daily Values — Pregnant & Lactating Women",icon:"🤱",
+    tags:["pregnant","lactating","nursing","pregnancy","breastfeeding","daily value","RDI","women"],
+    items:[
+     {h:"RDIs for Pregnant & Lactating Women",
+      t:"These values apply to supplements intended specifically for pregnant or lactating women. If the label is intended for this group, these values must be used for % DV calculations.",
+      v:{type:"table",headers:["Nutrient","Pregnant DV","Lactating DV","Unit"],rows:[
+        ["Vitamin A","770","1300","mcg RAE"],["Vitamin C","85","120","mg"],["Vitamin D","15","15","mcg"],
+        ["Vitamin E","15","19","mg AT"],["Vitamin K","90","90","mcg"],["Folate","600","500","mcg DFE"],
+        ["Iron","27","9","mg"],["Calcium","1000","1000","mg"],["Iodine","220","290","mcg"],
+        ["Choline","450","550","mg"],["DHA","200","200","mg"]
+      ]}}
+    ]}
+  ]},
+
+ {chap:"ch-ncc", chapTitle:"Appendix D — Nutrient Content Claims", chapIcon:"💬", chapDesc:"Complete definitions for all FDA-defined nutrient content claims",
+  sections:[
+   {id:"ncc-table",title:"Nutrient Content Claim Definitions",icon:"📋",
+    tags:["nutrient content claim","free","low","high","good source","reduced","less","more","light","lean","extra lean","calorie free","fat free","sodium free","sugar free","cholesterol free"],
+    items:[
+     {h:"'Free' Claims",
+      t:"A 'free' claim means a food contains no amount of, or trivial or 'physiologically inconsequential' amounts of the nutrient.",
+      v:{type:"table",headers:["Claim","Requirement Per Serving"],rows:[
+        ["Calorie free","< 5 calories"],["Sugar free","< 0.5 g sugars"],["Fat free","< 0.5 g total fat"],
+        ["Saturated fat free","< 0.5 g saturated fat AND < 0.5 g trans fat"],["Cholesterol free","< 2 mg cholesterol AND ≤ 2 g saturated fat"],
+        ["Sodium free","< 5 mg sodium"],["Salt free","Same as sodium free"]
+      ]}},
+     {h:"'Low' Claims",
+      t:"A 'low' claim means a person can eat a food frequently without exceeding dietary guidelines for that nutrient.",
+      v:{type:"table",headers:["Claim","Requirement Per Serving"],rows:[
+        ["Low calorie","≤ 40 calories (≤ 120 cal per 50g if serving ≤ 30g or ≤ 2 tbsp)"],
+        ["Low fat","≤ 3 g total fat"],["Low saturated fat","≤ 1 g saturated fat AND ≤ 15% calories from sat fat"],
+        ["Low cholesterol","≤ 20 mg cholesterol AND ≤ 2 g saturated fat"],["Low sodium","≤ 140 mg sodium"],
+        ["Very low sodium","≤ 35 mg sodium"]
+      ]}},
+     {h:"'High' / 'Good Source' Claims",
+      t:"These claims characterize products with significant levels of nutrients.",
+      v:{type:"table",headers:["Claim","Requirement"],rows:[
+        ["High / Excellent source / Rich in","≥ 20% DV per serving"],
+        ["Good source / Contains / Provides","10–19% DV per serving"],
+        ["More / Added / Extra / Plus / Fortified / Enriched","≥ 10% DV more than reference food (per serving)"]
+      ]}},
+     {h:"'Reduced' / 'Less' Claims",
+      t:"These claims indicate the product has been modified to contain less of a nutrient compared to a reference food.",
+      v:{type:"table",headers:["Claim","Requirement"],rows:[
+        ["Reduced [nutrient]","≥ 25% less of the nutrient per serving vs. reference food"],
+        ["Less [nutrient] / Fewer [calories]","≥ 25% less vs. reference food"],
+        ["Light / Lite","1/3 fewer calories OR 50% less fat vs. reference food"]
+      ]}}
+    ]}
+  ]},
+
+ {chap:"ch-health", chapTitle:"Appendix E — Authorized Health Claims", chapIcon:"🏥", chapDesc:"Complete list of FDA-authorized health claims and their requirements",
+  sections:[
+   {id:"hc-list",title:"All FDA-Authorized Health Claims",icon:"✅",
+    tags:["authorized health claim","significant scientific agreement","SSA","calcium","sodium","fat","cancer","heart","folic acid","fiber","soy","plant sterol","whole grain","potassium","fluoride"],
+    items:[
+     {h:"Calcium, Vitamin D, and Osteoporosis",
+      t:"Model claim: 'Regular exercise and a healthy diet with enough calcium helps teens and young adult white and Asian women maintain good bone health and may reduce their high risk of osteoporosis later in life.' Requires: product must be high in calcium; phosphorus content must not exceed calcium content.",v:null},
+     {h:"Sodium and Hypertension",
+      t:"Model claim: 'Diets low in sodium may reduce the risk of high blood pressure, a disease associated with many factors.' Requires: product must meet the definition of 'low sodium.'",v:null},
+     {h:"Dietary Fat and Cancer",
+      t:"Model claim: 'Development of cancer depends on many factors. A diet low in total fat may reduce the risk of some cancers.' Requires: product must meet the definition of 'low fat.'",v:null},
+     {h:"Saturated Fat, Cholesterol, and Coronary Heart Disease",
+      t:"Model claim: 'While many factors affect heart disease, diets low in saturated fat and cholesterol may reduce the risk of this disease.' Requires: product must meet definitions for 'low saturated fat,' 'low cholesterol,' and 'low fat.'",v:null},
+     {h:"Fiber-Containing Grain Products, Fruits, and Vegetables, and Cancer",
+      t:"Model claim: 'Low fat diets rich in fiber-containing grain products, fruits, and vegetables may reduce the risk of some types of cancer...' Requires: low fat, good source of dietary fiber.",v:null},
+     {h:"Folic Acid and Neural Tube Defects",
+      t:"Model claim: 'Healthful diets with adequate folate may reduce a woman's risk of having a child with a brain or spinal cord defect.' Requires: product must be a good source of folate (≥ 40 mcg per serving).",v:null},
+     {h:"Soluble Fiber and Risk of Coronary Heart Disease",
+      t:"Eligible sources: whole oats, psyllium seed husk, beta-glucan soluble fiber. Requires: low saturated fat and cholesterol; ≥ 0.75 g soluble fiber per serving.",v:null},
+     {h:"Soy Protein and Risk of Coronary Heart Disease",
+      t:"Model claim: '25 grams of soy protein a day, as part of a diet low in saturated fat and cholesterol, may reduce the risk of heart disease.' Requires: ≥ 6.25 g soy protein per serving, low fat, low saturated fat, low cholesterol.",v:null},
+     {h:"Plant Sterol/Stanol Esters and Risk of Coronary Heart Disease",
+      t:"Model claim: 'Foods containing at least 0.65 g per serving of vegetable oil plant stanol esters, eaten twice a day with meals for a daily total intake of at least 1.3 g, as part of a diet low in saturated fat and cholesterol, may reduce the risk of heart disease.' Requires: ≥ 0.65 g plant sterol esters per serving.",v:null},
+     {h:"Potassium and Risk of High Blood Pressure and Stroke",
+      t:"Model claim: 'Diets containing foods that are good sources of potassium and that are low in sodium may reduce the risk of high blood pressure and stroke.' Requires: good source of potassium (≥ 350 mg), low sodium, low total fat, low saturated fat, low cholesterol.",v:null}
+    ]}
+  ]},
+
+ {chap:"ch-qualified", chapTitle:"Qualified Health Claims", chapIcon:"🔬", chapDesc:"Health claims based on emerging evidence — require FDA enforcement discretion letter and qualifying disclaimers",
+  sections:[
+   {id:"qhc-overview",title:"Qualified Health Claims — Overview",icon:"📋",
+    tags:["qualified health claim","emerging evidence","enforcement discretion","petition","disclaimer","limited evidence","SSA","scientific agreement","nuts","omega-3","selenium","antioxidant"],
+    items:[
+     {h:"How Qualified Health Claims Differ from Authorized Claims",
+      t:"Unlike authorized health claims (which meet 'significant scientific agreement'), qualified health claims are based on emerging evidence that does not yet meet the SSA standard. They must always be accompanied by a qualifying disclaimer that communicates the level of scientific certainty.",
+      v:{type:"table",headers:["Feature","Authorized Claim","Qualified Claim"],rows:[
+        ["Evidence standard","Significant Scientific Agreement","Emerging/limited evidence"],
+        ["FDA approval","Required (by regulation)","Enforcement discretion letter required"],
+        ["Disclaimer","Not required","Always required"],
+        ["Claim language","Flexible (within model)","Must match FDA-approved language exactly"]
+      ]}},
+     {h:"Examples of Qualified Health Claims",
+      t:"The following are examples of qualified health claims that FDA has permitted through enforcement discretion letters. The exact claim language and disclaimer must match what FDA specified in the enforcement discretion letter.",
+      v:{type:"table",headers:["Substance","Condition","Example Claim Language"],rows:[
+        ["Nuts","Reduced risk of heart disease","Supportive but not conclusive research shows that eating 1.5 oz per day of most nuts may reduce the risk of heart disease."],
+        ["Omega-3 fatty acids (EPA/DHA)","Reduced risk of heart disease","Supportive but not conclusive research shows that consumption of EPA and DHA omega-3 fatty acids may reduce the risk of coronary heart disease."],
+        ["Selenium","Reduced risk of certain cancers","Selenium may reduce the risk of certain cancers. Some scientific evidence suggests that consumption of selenium may reduce the risk of certain forms of cancer."],
+        ["Green tea","Reduced risk of breast/prostate cancer","Very limited and preliminary scientific research suggests that drinking green tea may reduce the risk of breast or prostate cancer."],
+        ["Calcium","Reduced risk of colon/rectal cancer","One weak study suggests that calcium supplements may reduce the risk of colon/rectal cancer."],
+        ["Antioxidant vitamins","Reduced risk of certain cancers","Some scientific evidence suggests that consumption of antioxidant vitamins may reduce the risk of certain forms of cancer."]
+      ]}},
+     {h:"Required Qualifier Language by Evidence Level",
+      t:"FDA assigns a letter grade to the evidence and specifies the corresponding disclaimer language. The weaker the evidence, the stronger the disclaimer must be.",
+      v:{type:"table",headers:["FDA Rating","Qualifier Required"],rows:[
+        ["A — SSA","No disclaimer required (authorized claim)"],
+        ["B — Good evidence, not SSA","'Although there is scientific evidence supporting this claim, the evidence is not conclusive.'"],
+        ["C — Limited evidence","'Some scientific evidence suggests... however, FDA has determined that this evidence is limited and not conclusive.'"],
+        ["D — Very limited evidence","'Very limited and preliminary scientific research suggests... FDA concludes that there is little scientific evidence supporting this claim.'"]
+      ]}}
+    ]}
+  ]}
 ];
 
 function buildVisual(v){
   if(!v) return '';
   var h='<div class="vis">';
   if(v.type==='box'){
-    var cls='box-'+v.style;
-    h+='<div class="'+cls+'"><div class="vis-label">'+v.label+'</div><div class="box-content">'+v.content+'</div></div>';
+    var cls={correct:'box-correct',warning:'box-warning',neutral:'box-neutral',wrong:'box-wrong'}[v.style]||'box-neutral';
+    h+='<div class="'+cls+'"><div class="vis-lbl">'+v.label+'</div><div class="box-content">'+v.content.replace(/\n/g,'<br>')+'</div></div>';
   } else if(v.type==='snippet'){
     h+='<div class="snippet"><div class="snippet-lbl">Example Panel Snippet</div>';
     v.lines.forEach(function(l){
       if(l.sep){h+='<hr class="snippet-hr">';return;}
-      var cls='snippet-line'+(l.b?' bold':'')+(l.sm?' small':'')+(l.cols?' cols':'');
-      if(l.cols) h+='<div class="'+cls+'"><span>'+l.l+'</span><span>'+l.r+'</span></div>';
-      else h+='<div class="'+cls+'">'+l.t+'</div>';
+      var c='sline'+(l.b?' bold':'')+(l.sm?' small':'')+(l.cols?' cols':'')+(l.indent?' indent':'');
+      if(l.cols) h+='<div class="'+c+'"><span>'+l.l+'</span><span>'+l.r+'</span></div>';
+      else h+='<div class="'+c+'">'+l.t+'</div>';
     });
     h+='</div>';
   } else if(v.type==='fullpanel'){
-    h+='<div class="full-panel">'
-      +'<div class="fp-title">Supplement Facts</div>'
-      +'<div class="fp-serving">Serving Size 2 Capsules (1.4 g)</div>'
-      +'<div class="fp-serving">Servings Per Container 30</div>'
-      +'<div class="fp-body">'
-      +'<div class="fp-row header-row"><span></span><span>Amount Per Serving</span><span class="dv">% Daily Value</span></div>'
-      +'<div class="fp-row"><span>Calories</span><span>10</span><span class="dv"></span></div>'
-      +'<div class="fp-row"><span>Total Carbohydrate</span><span>2 g</span><span class="dv">1%</span></div>'
-      +'<div class="fp-row"><span style="padding-left:12px">Sugars</span><span>0 g</span><span class="dv"></span></div>'
-      +'<div class="fp-row"><span>Vitamin C (as ascorbic acid)</span><span>500 mg</span><span class="dv">556%</span></div>'
-      +'<div class="fp-row"><span>Zinc (as zinc gluconate)</span><span>10 mg</span><span class="dv">91%</span></div>'
-      +'<div class="fp-row"><span>Elderberry Extract</span><span>200 mg</span><span class="dv">†</span></div>'
-      +'</div>'
-      +'<div class="fp-footnote">* Percent Daily Values are based on a 2,000 calorie diet.\n† Daily Value not established.</div>'
-      +'</div>';
+    h+='<div class="full-panel"><div class="fp-title">Supplement Facts</div><div class="fp-sub">Serving Size 2 Capsules (1.4 g)</div><div class="fp-sub" style="padding-bottom:4px">Servings Per Container 30</div><div class="fp-body"><div class="fp-row hrow"><span></span><span>Amount Per Serving</span><span class="dv">% Daily Value</span></div><div class="fp-row"><span>Calories</span><span>10</span><span class="dv"></span></div><div class="fp-row"><span>Total Carbohydrate</span><span>2 g</span><span class="dv">1%</span></div><div class="fp-row"><span class="indent">Sugars</span><span>0 g</span><span class="dv"></span></div><div class="fp-row"><span>Vitamin C (as ascorbic acid)</span><span>500 mg</span><span class="dv">556%</span></div><div class="fp-row"><span>Zinc (as zinc gluconate)</span><span>10 mg</span><span class="dv">91%</span></div><div class="fp-row"><span>Elderberry Extract</span><span>200 mg</span><span class="dv">†</span></div></div><div class="fp-fn">* Percent Daily Values are based on a 2,000 calorie diet.\n† Daily Value not established.</div></div>';
   } else if(v.type==='list'){
-    var cls2='vis-list'+(v.style==='neutral'?' neutral':'');
-    h+='<div class="'+cls2+'"><div class="vis-label">'+v.label+'</div><ul>';
+    var sc={blue:'',green:' green',yellow:' yellow',neutral:' neutral'}[v.style]||'';
+    h+='<div class="vis-list'+sc+'"><div class="vis-lbl">'+v.label+'</div><ul>';
     v.items.forEach(function(i){h+='<li>'+i+'</li>';});
     h+='</ul></div>';
   } else if(v.type==='olist'){
-    h+='<div class="vis-olist"><div class="vis-label">'+v.label+'</div><div class="vis-olist-grid">';
+    h+='<div class="vis-olist"><div class="vis-lbl">'+v.label+'</div><div class="vis-olist-grid">';
     v.items.forEach(function(i){h+='<div>'+i+'</div>';});
     h+='</div></div>';
   } else if(v.type==='table'){
-    h+='<table class="vis-table"><thead><tr>';
+    var wide=v.wide?' wide':'';
+    h+='<table class="vt'+wide+'"><thead><tr>';
     v.headers.forEach(function(hd){h+='<th>'+hd+'</th>';});
     h+='</tr></thead><tbody>';
     v.rows.forEach(function(r){h+='<tr>';r.forEach(function(c){h+='<td>'+c+'</td>';});h+='</tr>';});
     h+='</tbody></table>';
   } else if(v.type==='typesize'){
-    h+='<div class="typesize-box">'
-      +'<div class="vis-label">Type Size Reference</div>'
-      +'<div style="font-size:6pt;font-family:monospace;margin:4px 0">6pt: Calories 10 • Total Fat 0g • Vitamin C 500mg 556%</div>'
-      +'<div style="font-size:8pt;font-family:monospace;margin:4px 0">8pt: Calories 10 • Total Fat 0g • Vitamin C 500mg 556%</div>'
-      +'<div style="font-size:10pt;font-family:monospace">10pt: Calories 10 • Total Fat 0g</div>'
-      +'<div class="typesize-warn">⚠ 6pt is the minimum allowed type size in the panel.</div>'
-      +'</div>';
+    h+='<div class="typesize-box"><div class="vis-lbl">Type Size Reference</div><div style="font-size:6pt;font-family:monospace;margin:4px 0">6pt (MINIMUM): Calories 10 • Total Fat 0g • Vitamin C 500mg 556%</div><div style="font-size:8pt;font-family:monospace;margin:4px 0">8pt: Calories 10 • Vitamin C 500mg 556%</div><div style="font-size:10pt;font-family:monospace">10pt: Calories 10 • Vitamin C 500mg</div><div class="typesize-warn">⚠ 6 points is the minimum allowed type size anywhere in the Supplement Facts panel.</div></div>';
   } else if(v.type==='bottle'){
-    h+='<div class="bottle-diag">'
-      +'<div class="vis-label">Supplement Bottle Label Placement</div>'
-      +'<div class="bottle-flow">'
-      +'<div class="bottle-box pdp"><strong>PDP</strong><br>Principal Display Panel<br>(front)</div>'
-      +'<div class="bottle-arrow">→</div>'
-      +'<div class="bottle-box info"><strong>INFO PANEL</strong><br>Supplement Facts<br>Other Ingredients<br>Mfr. Name &amp; Address</div>'
-      +'<div class="bottle-arrow">→</div>'
-      +'<div class="bottle-box back"><strong>BACK</strong><br>Other content</div>'
-      +'</div>'
-      +'<div class="bottle-note">* Information panel = immediately to the right of the PDP when facing the label.</div>'
-      +'</div>';
+    h+='<div class="bottle-diag"><div class="vis-lbl">Supplement Bottle Label Placement</div><div class="bottle-flow"><div class="bx pdp"><strong>PDP</strong><br>Principal Display Panel<br>(front)</div><div class="barr">→</div><div class="bx info"><strong>INFO PANEL</strong><br>Supplement Facts<br>Other Ingredients<br>Mfr. Name &amp; Address<br>Directions</div><div class="barr">→</div><div class="bx back"><strong>BACK</strong><br>Additional content</div></div><div class="bottle-note">* Information panel = immediately to the right of the PDP when facing the label.</div></div>';
+  } else if(v.type==='two-compare'){
+    h+='<div class="two-col"><div class="box-correct"><div class="vis-lbl">'+v.correct.label+'</div><ul style="list-style:none;margin-top:6px">';
+    v.correct.items.forEach(function(i){h+='<li style="font-size:.78rem;padding:2px 0">✅ '+i+'</li>';});
+    h+='</ul></div><div class="box-wrong"><div class="vis-lbl">'+v.wrong.label+'</div><ul style="list-style:none;margin-top:6px">';
+    v.wrong.items.forEach(function(i){h+='<li style="font-size:.78rem;padding:2px 0">❌ '+i+'</li>';});
+    h+='</ul></div></div>';
   }
   h+='</div>';
   return h;
 }
 
-function buildCard(s){
-  var tags=s.tags.slice(0,5).map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
+function buildSection(s){
+  var tags=s.tags.slice(0,6).map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
   var body='';
-  s.content.forEach(function(c){
-    body+='<div class="item">'
-      +'<div class="item-heading">'+c.h+'</div>'
-      +'<div class="item-text">'+c.t+'</div>'
-      +(c.v?buildVisual(c.v):'')
-      +'</div>';
+  s.items.forEach(function(it){
+    body+='<div class="item"><div class="item-h">'+it.h+'</div><div class="item-t">'+it.t+'</div>'+(it.v?buildVisual(it.v):'')+'</div>';
   });
-  return '<div class="card" id="card-'+s.id+'">'
-    +'<button class="card-header" onclick="toggle(\''+s.id+'\')" aria-expanded="false">'
-    +'<div class="card-header-left">'
-    +'<span class="card-icon">'+s.icon+'</span>'
-    +'<div><div class="card-title">'+s.title+'</div>'
-    +'<div class="card-tags">'+tags+'</div></div>'
-    +'</div>'
-    +'<span class="card-arrow" id="arr-'+s.id+'">▼</span>'
-    +'</button>'
-    +'<div class="card-body" id="body-'+s.id+'">'+body+'</div>'
-    +'</div>';
+  return '<div class="card" id="card-'+s.id+'"><button class="card-hdr" onclick="toggle(\''+s.id+'\')" aria-expanded="false"><div class="card-left"><span class="card-icon">'+s.icon+'</span><div><div class="card-title">'+s.title+'</div><div class="card-tags">'+tags+'</div></div></div><span class="card-arr" id="arr-'+s.id+'">▼</span></button><div class="card-body" id="body-'+s.id+'">'+body+'</div></div>';
+}
+
+function buildChapter(ch){
+  var sects=ch.sections.map(buildSection).join('');
+  return '<div class="chap-header" id="'+ch.chap+'"><span class="chap-icon">'+ch.chapIcon+'</span><div><h2>'+ch.chapTitle+'</h2><p>'+ch.chapDesc+'</p></div></div>'+sects;
 }
 
 function render(list){
   var el=document.getElementById('content');
   var em=document.getElementById('empty');
-  if(list.length===0){
-    el.innerHTML='';
-    em.classList.add('show');
-    return;
-  }
+  if(list.length===0){el.innerHTML='';em.classList.add('show');return;}
   em.classList.remove('show');
-  el.innerHTML=list.map(buildCard).join('');
-}
-
-function toggle(id){
-  var body=document.getElementById('body-'+id);
-  var arr=document.getElementById('arr-'+id);
-  var btn=body.previousElementSibling;
-  var open=body.classList.toggle('open');
-  arr.classList.toggle('open',open);
-  btn.setAttribute('aria-expanded',open);
-}
-
-function setAll(open){
-  sections.forEach(function(s){
-    var body=document.getElementById('body-'+s.id);
-    var arr=document.getElementById('arr-'+s.id);
-    if(!body) return;
-    if(open){body.classList.add('open');arr.classList.add('open');}
-    else{body.classList.remove('open');arr.classList.remove('open');}
+  // Group by chapter
+  var html='';
+  var chapsSeen={};
+  DATA.forEach(function(ch){
+    var matching=ch.sections.filter(function(s){return list.indexOf(s)>=0;});
+    if(matching.length===0) return;
+    if(!chapsSeen[ch.chap]){
+      html+='<div class="chap-header" id="'+ch.chap+'"><span class="chap-icon">'+ch.chapIcon+'</span><div><h2>'+ch.chapTitle+'</h2><p>'+ch.chapDesc+'</p></div></div>';
+      chapsSeen[ch.chap]=true;
+    }
+    matching.forEach(function(s){html+=buildSection(s);});
   });
+  el.innerHTML=html;
+}
+
+function allSections(){
+  var all=[];
+  DATA.forEach(function(ch){ch.sections.forEach(function(s){all.push(s);});});
+  return all;
 }
 
 function doSearch(q){
   var cnt=document.getElementById('search-count');
   q=q.trim().toLowerCase();
-  if(!q){render(sections);cnt.textContent='';return;}
-  var res=sections.filter(function(s){
-    return s.tags.some(function(t){return t.includes(q);})
-      ||s.title.toLowerCase().includes(q)
-      ||s.content.some(function(c){return c.h.toLowerCase().includes(q)||c.t.toLowerCase().includes(q);});
+  if(!q){render(allSections());cnt.textContent='';return;}
+  var res=allSections().filter(function(s){
+    return s.tags.some(function(t){return t.includes(q);})||
+      s.title.toLowerCase().includes(q)||
+      s.items.some(function(it){return it.h.toLowerCase().includes(q)||it.t.toLowerCase().includes(q);});
   });
   render(res);
-  cnt.textContent=res.length+' section(s) match "'+q+'"';
-  if(res.length<=3) setAll(true);
+  var total=res.length;
+  cnt.textContent=total+' section(s) match "'+q+'"';
+  document.getElementById('empty-msg').textContent='No results found for "'+q+'"';
+  if(total<=3) setAll(true);
 }
 
-function printGuide(){
+function toggle(id){
+  var b=document.getElementById('body-'+id);
+  var a=document.getElementById('arr-'+id);
+  if(!b) return;
+  var open=b.classList.toggle('open');
+  a.classList.toggle('open',open);
+}
+
+function setAll(open){
+  document.querySelectorAll('.card-body').forEach(function(b){
+    var id=b.id.replace('body-','');
+    var a=document.getElementById('arr-'+id);
+    if(open){b.classList.add('open');if(a)a.classList.add('open');}
+    else{b.classList.remove('open');if(a)a.classList.remove('open');}
+  });
+}
+
+function jumpTo(id){
+  var el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function doPrint(){
   setAll(true);
-  setTimeout(function(){window.print();},200);
+  setTimeout(function(){window.print();},250);
 }
 
 // Initial render
-render(sections);
+render(allSections());
 </script>
 </body>
 </html>
