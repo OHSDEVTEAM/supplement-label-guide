@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CFR 101.36 Supplement Label Reference Guide</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Arial,sans-serif;background:#f3f4f6;color:#111}
+  a{color:inherit}
+
+  /* HEADER */
+  #header{background:#111827;color:#fff;padding:20px 16px}
+  #header-inner{max-width:900px;margin:0 auto}
+  #header-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  #header-title{display:flex;align-items:center;gap:10px}
+  #header-title h1{font-size:1.2rem;font-weight:900;line-height:1.2}
+  #header-title p{font-size:.7rem;color:#9ca3af;margin-top:2px}
+  #btn-print{background:#fff;color:#111;border:none;padding:8px 14px;border-radius:8px;font-weight:700;font-size:.8rem;cursor:pointer;display:flex;align-items:center;gap:6px}
+  #btn-print:hover{background:#e5e7eb}
+  #search-wrap{margin-top:14px}
+  #search{width:100%;padding:12px 16px;border-radius:8px;border:none;font-size:.85rem;outline:none}
+  #search-count{font-size:.7rem;color:#9ca3af;margin-top:6px;margin-left:4px;min-height:16px}
+
+  /* TOOLBAR */
+  #toolbar{background:#fff;border-bottom:1px solid #e5e7eb;padding:8px 16px}
+  #toolbar-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  #disclaimer{background:#fffbeb;border:1px solid #fde68a;border-radius:4px;padding:6px 10px;font-size:.7rem;color:#92400e}
+  #toolbar-btns{display:flex;gap:8px}
+  .tbtn{font-size:.7rem;border-radius:4px;padding:4px 10px;cursor:pointer;border:1px solid}
+  #btn-expand-all{color:#2563eb;border-color:#93c5fd}
+  #btn-expand-all:hover{background:#eff6ff}
+  #btn-collapse-all{color:#4b5563;border-color:#d1d5db}
+  #btn-collapse-all:hover{background:#f9fafb}
+
+  /* CONTENT */
+  #content{max-width:900px;margin:20px auto;padding:0 16px 40px}
+
+  /* SECTION CARDS */
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;margin-bottom:12px}
+  .card-header{width:100%;text-align:left;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;border:none;background:none;font-family:inherit}
+  .card-header:hover{background:#f9fafb}
+  .card-header-left{display:flex;align-items:center;gap:12px}
+  .card-icon{font-size:1.3rem}
+  .card-title{font-weight:700;font-size:.95rem;color:#111}
+  .card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}
+  .tag{background:#f3f4f6;color:#6b7280;border-radius:4px;padding:1px 6px;font-size:.65rem}
+  .card-arrow{color:#9ca3af;font-size:1rem;transition:transform .2s}
+  .card-arrow.open{transform:rotate(180deg)}
+  .card-body{display:none;padding:0 20px 20px;border-top:1px solid #f3f4f6}
+  .card-body.open{display:block}
+
+  /* SECTION ITEMS */
+  .item{margin-top:20px}
+  .item-heading{font-weight:700;font-size:.85rem;color:#1f2937;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+  .item-heading::before{content:'';display:inline-block;width:5px;height:18px;background:#3b82f6;border-radius:3px;flex-shrink:0}
+  .item-text{font-size:.82rem;line-height:1.6;color:#374151;margin-left:13px}
+
+  /* VISUALS */
+  .vis{margin:10px 0 0 13px}
+  .vis-label{font-size:.65rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+
+  .box-correct{border:2px solid #22c55e;background:#f0fdf4;border-radius:6px;padding:10px 12px}
+  .box-warning{border:2px solid #f59e0b;background:#fffbeb;border-radius:6px;padding:10px 12px}
+  .box-neutral{border:2px solid #9ca3af;background:#f9fafb;border-radius:6px;padding:10px 12px}
+  .box-content{font-family:monospace;font-size:.82rem}
+
+  .snippet{border:1px solid #111;border-radius:4px;padding:10px;display:inline-block;background:#fff;min-width:220px}
+  .snippet-lbl{font-size:.65rem;color:#9ca3af;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+  .snippet-line{font-size:.8rem;line-height:1.5}
+  .snippet-line.bold{font-weight:900;font-size:.95rem}
+  .snippet-line.small{font-size:.7rem;color:#4b5563}
+  .snippet-line.cols{display:flex;justify-content:space-between;gap:20px}
+  .snippet-line.cols span:last-child{font-weight:700}
+  .snippet-hr{border:none;border-top:1px solid #d1d5db;margin:4px 0}
+
+  .full-panel{border:2px solid #000;display:inline-block;background:#fff;min-width:240px;border-radius:2px}
+  .fp-title{font-size:1.4rem;font-weight:900;padding:6px 10px 4px;border-bottom:4px solid #000}
+  .fp-serving{font-size:.72rem;padding:2px 10px}
+  .fp-body{border-top:8px solid #000}
+  .fp-row{display:flex;justify-content:space-between;align-items:center;padding:2px 10px;font-size:.72rem;border-bottom:1px solid #e5e7eb}
+  .fp-row.header-row{color:#6b7280;border-bottom:1px solid #d1d5db}
+  .fp-row .dv{font-weight:700;margin-left:8px;white-space:nowrap}
+  .fp-footnote{font-size:.65rem;color:#4b5563;padding:6px 10px;border-top:1px solid #e5e7eb;white-space:pre-line}
+
+  .vis-list{border:1px solid #bfdbfe;background:#eff6ff;border-radius:6px;padding:10px 12px}
+  .vis-list.neutral{border-color:#d1d5db;background:#f9fafb}
+  .vis-list ul{list-style:none;margin-top:6px}
+  .vis-list li{font-size:.8rem;padding:2px 0;display:flex;gap:6px}
+  .vis-list li::before{content:'•';color:#3b82f6}
+  .vis-list.neutral li::before{color:#6b7280}
+
+  .vis-olist{border:1px solid #c7d2fe;background:#eef2ff;border-radius:6px;padding:10px 12px}
+  .vis-olist-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;margin-top:6px}
+  .vis-olist-grid div{font-size:.75rem;color:#374151;padding:1px 0}
+
+  table.vis-table{border-collapse:collapse;margin-top:6px;font-size:.78rem}
+  table.vis-table th{background:#374151;color:#fff;padding:5px 12px;text-align:left;font-size:.72rem}
+  table.vis-table td{border:1px solid #d1d5db;padding:4px 12px;font-family:monospace}
+  table.vis-table tr:nth-child(even) td{background:#f9fafb}
+
+  .typesize-box{border:1px solid #d1d5db;background:#f9fafb;border-radius:6px;padding:10px 12px}
+  .typesize-warn{font-size:.72rem;color:#dc2626;margin-top:6px}
+
+  .bottle-diag{border:1px solid #d1d5db;background:#f9fafb;border-radius:6px;padding:10px 12px}
+  .bottle-flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .bottle-box{border:2px solid;border-radius:4px;padding:8px;text-align:center;font-size:.72rem;min-width:80px}
+  .bottle-box.pdp{border-color:#3b82f6;background:#eff6ff}
+  .bottle-box.pdp strong{color:#1d4ed8}
+  .bottle-box.info{border-color:#22c55e;background:#f0fdf4;min-width:120px}
+  .bottle-box.info strong{color:#15803d}
+  .bottle-box.back{border-color:#d1d5db;background:#fff}
+  .bottle-box.back strong{color:#6b7280}
+  .bottle-arrow{color:#9ca3af;font-size:1.2rem}
+  .bottle-note{font-size:.68rem;color:#6b7280;margin-top:6px}
+
+  /* EMPTY STATE */
+  #empty{display:none;text-align:center;padding:60px 20px;color:#6b7280}
+  #empty.show{display:block}
+  #empty .emoji{font-size:2.5rem;margin-bottom:10px}
+
+  /* FOOTER */
+  #footer{text-align:center;font-size:.7rem;color:#9ca3af;padding-bottom:30px}
+
+  /* PRINT */
+  @media print {
+    #header,#toolbar,#footer{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    #btn-print,#toolbar-btns,#search-wrap,#search-count{display:none!important}
+    body{background:#fff}
+    .card{border:1px solid #ccc;border-radius:4px;margin-bottom:14px;break-inside:avoid;page-break-inside:avoid}
+    .card-header{cursor:default}
+    .card-body{display:block!important}
+    .card-arrow{display:none}
+    #header{background:#111827!important;padding:14px}
+    #toolbar{background:#fff}
+    #disclaimer{display:block}
+    #toolbar-btns{display:none}
+    table.vis-table th{background:#374151!important;color:#fff!important}
+    .vis-list{background:#eff6ff!important}
+    .vis-list.neutral{background:#f9fafb!important}
+    .vis-olist{background:#eef2ff!important}
+    .box-correct{background:#f0fdf4!important}
+    .box-warning{background:#fffbeb!important}
+    .bottle-box.pdp{background:#eff6ff!important}
+    .bottle-box.info{background:#f0fdf4!important}
+    @page{margin:.7in;size:letter}
+  }
+</style>
+</head>
+<body>
+
+<div id="header">
+  <div id="header-inner">
+    <div id="header-top">
+      <div id="header-title">
+        <span style="font-size:1.6rem">🏛️</span>
+        <div>
+          <h1>CFR 101.36 Supplement Label Reference Guide</h1>
+          <p>Source: 21 CFR §101.36 (eCFR.gov) &amp; FDA Dietary Supplements Guidance</p>
+        </div>
+      </div>
+      <button id="btn-print" onclick="printGuide()">🖨️ Print / Save as PDF</button>
+    </div>
+    <div id="search-wrap">
+      <input id="search" type="text" placeholder="🔍  Search any term: rounding, % DV, serving size, proprietary blend, format, placement..." oninput="doSearch(this.value)"/>
+      <div id="search-count"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toolbar">
+  <div id="toolbar-inner">
+    <div id="disclaimer">⚠️ <strong>Important:</strong> Always verify against the current official eCFR before final label approval. Consult a regulatory specialist.</div>
+    <div id="toolbar-btns">
+      <button class="tbtn" id="btn-expand-all" onclick="setAll(true)">Expand All</button>
+      <button class="tbtn" id="btn-collapse-all" onclick="setAll(false)">Collapse All</button>
+    </div>
+  </div>
+</div>
+
+<div id="content"></div>
+<div id="empty"><div class="emoji">🔍</div><div id="empty-msg"></div><div style="font-size:.8rem;margin-top:6px">Try: calories, font size, blend, % DV, rounding, placement</div></div>
+<div id="footer">All content sourced exclusively from: 21 CFR §101.36 via eCFR.gov &amp; FDA.gov Dietary Supplements Guidance Documents</div>
+
+<script>
+var sections=[
+  {id:"overview",title:"Overview & Applicability",icon:"📋",
+   tags:["overview","applicability","dietary supplement","supplement facts","required","general"],
+   content:[
+    {h:"What This Regulation Covers",
+     t:"21 CFR 101.36 governs the nutrition labeling of dietary supplements. Any product that meets the definition of a 'dietary supplement' under section 201(ff) of the Federal Food, Drug, and Cosmetic Act must bear a Supplement Facts panel.",
+     v:null},
+    {h:"The Panel is Called 'Supplement Facts'",
+     t:"Unlike food products which use 'Nutrition Facts,' dietary supplement labels must use the title 'Supplement Facts.' This title appears at the top of the panel.",
+     v:{type:"box",label:"CORRECT ✅",content:"Supplement Facts",style:"correct"}}
+   ]},
+  {id:"serving",title:"Serving Size & Servings Per Container",icon:"🥄",
+   tags:["serving size","servings per container","serving","tablespoon","tablet","capsule","packet","unit"],
+   content:[
+    {h:"Serving Size Declaration",
+     t:"The serving size must be declared as the common household measure most appropriate for the product (e.g., '1 tablet,' '2 capsules,' '1 packet,' '1 teaspoon'). A metric equivalent must also be stated in parentheses.",
+     v:{type:"snippet",lines:[{b:true,t:"Supplement Facts"},{t:"Serving Size 1 Tablet (1.5 g)"},{t:"Servings Per Container 60"}]}},
+    {h:"Servings Per Container",
+     t:"The number of servings per container must be declared. If not a whole number and greater than 1, it may be rounded to the nearest whole number. If less than or equal to 1, it must be expressed as a fraction.",
+     v:null}
+   ]},
+  {id:"required",title:"Required Nutrients & Dietary Ingredients",icon:"🧪",
+   tags:["required","nutrients","dietary ingredients","calories","total fat","sodium","total carbohydrate","protein","vitamin","mineral","mandatory"],
+   content:[
+    {h:"Mandatory Nutrients (When Present at Detectable Levels)",
+     t:"The following nutrients must be declared when present at a detectable level: Calories, Calories from Fat (when fat is present), Total Fat, Saturated Fat, Trans Fat, Cholesterol, Sodium, Total Carbohydrate, Dietary Fiber, Sugars, Protein, Vitamin A, Vitamin C, Calcium, Iron.",
+     v:{type:"list",label:"Must Declare If Present",style:"blue",items:["Calories","Total Fat","Saturated Fat","Trans Fat","Cholesterol","Sodium","Total Carbohydrate","Dietary Fiber","Sugars","Protein","Vitamin A","Vitamin C","Calcium","Iron"]}},
+    {h:"Dietary Ingredients Without RDIs or DRVs",
+     t:"Dietary ingredients without Reference Daily Intakes (RDIs) or Daily Reference Values (DRVs)—such as herbs, botanicals, amino acids—must still be listed. They include quantity per serving but no % DV. A dagger symbol (†) is placed in the % DV column with footnote: '† Daily Value not established.'",
+     v:{type:"snippet",lines:[{b:true,t:"Amount Per Serving"},{t:"Echinacea (root) 400 mg   †"},{t:"Ginkgo Biloba (leaf) 120 mg   †"},{sep:true},{sm:true,t:"† Daily Value not established."}]}}
+   ]},
+  {id:"order",title:"Order of Nutrients on the Label",icon:"🔢",
+   tags:["order","sequence","list order","hierarchy","arrangement","placement","position"],
+   content:[
+    {h:"Required Listing Order",
+     t:"Nutrients with RDIs or DRVs must appear in the order specified in 21 CFR 101.36. Dietary ingredients without RDIs/DRVs follow immediately below, listed in the order they are prominent in the product or by weight.",
+     v:{type:"olist",label:"Required Order",items:["1. Calories","2. Calories from Fat","3. Total Fat","4. Saturated Fat","5. Trans Fat","6. Polyunsaturated Fat","7. Monounsaturated Fat","8. Cholesterol","9. Sodium","10. Potassium","11. Total Carbohydrate","12. Dietary Fiber","13. Soluble Fiber","14. Insoluble Fiber","15. Sugars","16. Sugar Alcohol","17. Other Carbohydrate","18. Protein","19. Vitamin A","20. Vitamin C","21. Calcium","22. Iron","23. [Other vitamins/minerals with RDIs]","24. [Dietary ingredients without RDIs/DRVs, by weight]"]}}
+   ]},
+  {id:"pct-dv",title:"% Daily Value (% DV)",icon:"%",
+   tags:["percent daily value","% dv","daily value","rdi","drv","reference","percentage","footnote"],
+   content:[
+    {h:"When % DV Must Be Declared",
+     t:"The % Daily Value must be declared for all nutrients with an established RDI or DRV. The % DV is based on a 2,000-calorie diet for vitamins and minerals with RDIs.",
+     v:{type:"snippet",lines:[{cols:true,l:"",r:"% Daily Value*"},{cols:true,l:"Vitamin C 60 mg",r:"67%"},{cols:true,l:"Calcium 200 mg",r:"20%"},{sep:true},{sm:true,t:"* Percent Daily Values are based on a 2,000 calorie diet."}]}},
+    {h:"No % DV — Dagger Symbol Required",
+     t:"For dietary ingredients without an RDI or DRV (e.g., herbs, botanicals, proprietary blends), use a dagger symbol (†) in the % DV column. The footnote '† Daily Value not established.' must appear at the bottom of the panel.",
+     v:{type:"snippet",lines:[{cols:true,l:"Ashwagandha Root 300 mg",r:"†"},{sep:true},{sm:true,t:"† Daily Value not established."}]}},
+    {h:"Rounding % DV",
+     t:"% DV values must be rounded to the nearest whole number. Values less than 2% may be expressed as an asterisk (*) with footnote. Zero may be used if the amount is less than 1%.",
+     v:{type:"table",headers:["% DV Calculated","Declared As"],rows:[["0.4%","0%"],["1.2%","*"],["2.4%","2%"],["67.4%","67%"],["100.6%","101%"]]}}
+   ]},
+  {id:"rounding",title:"Rounding Rules for Nutrient Amounts",icon:"🔣",
+   tags:["rounding","round","nearest","decimal","calories","fat","sodium","carbohydrate","protein","grams","milligrams","micrograms"],
+   content:[
+    {h:"Calorie Rounding",
+     t:"Rounded to nearest 5-calorie increment up to and including 50 calories; nearest 10-calorie increment above 50. Amounts less than 5 calories may be expressed as zero.",
+     v:{type:"table",headers:["Actual Calories","Declare As"],rows:[["3 cal","0"],["7 cal","5"],["23 cal","25"],["48 cal","50"],["53 cal","50"],["78 cal","80"],["104 cal","100"]]}},
+    {h:"Total Fat, Saturated Fat, Poly- & Monounsaturated Fat",
+     t:"Less than 0.5 g → 0 g. Between 0.5 g and 5 g → nearest 0.5 g. More than 5 g → nearest 1 g.",
+     v:{type:"table",headers:["Actual Amount","Declare As"],rows:[["0.3 g","0 g"],["0.7 g","0.5 g"],["1.2 g","1.0 g"],["6.4 g","6 g"]]}},
+    {h:"Cholesterol",
+     t:"Less than 2 mg → 0 mg. Between 2 mg and 5 mg → may declare as 'less than 5 mg.' More than 5 mg → nearest 5 mg increment.",v:null},
+    {h:"Sodium, Potassium",
+     t:"Less than 5 mg → 0 mg. Between 5 mg and 140 mg → nearest 5 mg. More than 140 mg → nearest 10 mg.",v:null},
+    {h:"Total Carbohydrate, Dietary Fiber, Sugars, Sugar Alcohol",
+     t:"Less than 0.5 g → 0 g. Between 0.5 g and 1 g → 'less than 1 g.' More than 1 g → nearest 1 g.",v:null},
+    {h:"Protein",
+     t:"Less than 0.5 g → 0 g. Between 0.5 g and 1 g → 'less than 1 g.' More than 1 g → nearest 1 g.",v:null},
+    {h:"Vitamins & Minerals (as % DV)",
+     t:"% DV rounded to nearest whole percent. Values less than 2% may be declared as '*' with footnote. Values of 0 may be used when analytically undetectable.",v:null},
+    {h:"Dietary Ingredients Without RDIs/DRVs — Units",
+     t:"Expressed in the unit appropriate to the ingredient. Weights are based on the ingredient as added to the product.",
+     v:{type:"table",headers:["Unit","Use When Amount Is"],rows:[["g (grams)","≥ 1 gram"],["mg (milligrams)","≥ 1 mg, < 1 gram"],["mcg (micrograms)","< 1 mg"]]}}
+   ]},
+  {id:"format",title:"Format & Type Size Requirements",icon:"🖨️",
+   tags:["format","type size","font","typeface","hairline","bold","print","size","layout","standard","simplified","tabular","linear"],
+   content:[
+    {h:"Standard Format",
+     t:"The Supplement Facts panel must use a single vertical column. A hairline rule separates the title from the rest. The title must be set in a larger type size. All text must provide sufficient contrast against the background.",
+     v:{type:"fullpanel"}},
+    {h:"Minimum Type Size",
+     t:"All information in the Supplement Facts panel must be in a type size no smaller than 6 points. All type within the panel must remain legible when the panel is reduced in size.",
+     v:{type:"typesize"}},
+    {h:"Simplified Format",
+     t:"May be used when 8 or fewer dietary ingredients are required to be listed. Omits the 'Amount Per Serving' column heading and uses a side-by-side layout.",v:null},
+    {h:"Tabular Format",
+     t:"May be used when the label has insufficient space for the vertical format and the total display area is 40 square inches or less.",v:null},
+    {h:"Linear Format",
+     t:"May be used only when the total display area is less than 12 square inches.",
+     v:{type:"box",label:"Linear Format Example (< 12 sq in)",content:"Supplement Facts: Serving Size 1 Tablet; Vitamin C 500 mg (556% DV); Zinc 10 mg (91% DV); Echinacea 200 mg (†). † Daily Value not established.",style:"neutral"}}
+   ]},
+  {id:"ingredients",title:"Ingredient List & Identity",icon:"📝",
+   tags:["ingredient list","ingredients","other ingredients","source","identity","botanical","herb","part","common name","proprietary blend"],
+   content:[
+    {h:"Identifying the Dietary Ingredient",
+     t:"The common or usual name of each dietary ingredient must be used. For botanical ingredients, the part of the plant used (e.g., root, leaf, stem, flower) must be identified. The Latin binomial name may be included in parentheses.",
+     v:{type:"snippet",lines:[{t:"Echinacea purpurea (root) 400 mg   †"},{t:"Ginkgo biloba (leaf) 120 mg   †"},{t:"Valerian (Valeriana officinalis) (root) 300 mg   †"}]}},
+    {h:"Proprietary Blends",
+     t:"A proprietary blend may be listed with a collective name. The total weight of the blend must be declared. Each ingredient within the blend must be listed in descending order by weight, but individual weights are not required.",
+     v:{type:"snippet",lines:[{t:"Antioxidant Blend  500 mg   †"},{t:"   Turmeric Root, Quercetin, Resveratrol,"},{t:"   Green Tea Leaf Extract"},{sep:true},{sm:true,t:"† Daily Value not established."}]}},
+    {h:"Other Ingredients",
+     t:"Ingredients that are not dietary ingredients (fillers, binders, coatings, flavors, colors) must be declared in an 'Other ingredients:' statement located outside the Supplement Facts panel, in descending order by weight.",
+     v:{type:"box",label:"Outside the Panel",content:"Other ingredients: Microcrystalline cellulose, vegetable capsule (hypromellose), magnesium stearate, silica.",style:"neutral"}}
+   ]},
+  {id:"placement",title:"Panel Placement on the Label",icon:"📦",
+   tags:["placement","location","information panel","principal display panel","PDP","where","position"],
+   content:[
+    {h:"Where the Supplement Facts Panel Must Appear",
+     t:"The Supplement Facts panel must appear on the information panel—the panel immediately to the right of the principal display panel (PDP). If insufficient space, it may appear on the next adjacent panel.",
+     v:{type:"bottle"}},
+    {h:"What the Information Panel Must Include",
+     t:"The Supplement Facts panel must be placed on the same panel as the ingredient list, name and address of the manufacturer/distributor, and net quantity of contents.",
+     v:{type:"list",label:"Information Panel Must Include:",style:"neutral",items:["Supplement Facts panel","Other ingredients list","Name & address of manufacturer/packer/distributor","Net quantity of contents"]}}
+   ]},
+  {id:"exemptions",title:"Small Businesses & Label Space Exemptions",icon:"🏷️",
+   tags:["exemption","small business","space","area","size","insufficient","small label"],
+   content:[
+    {h:"Insufficient Label Space — Permitted Formats",
+     t:"When the total display area is 40 sq in or less, tabular or simplified format may be used. When less than 12 sq in, the linear format may be used.",
+     v:{type:"table",headers:["Label Display Area","Permitted Format"],rows:[["> 40 sq in","Standard vertical format"],["≤ 40 sq in","Tabular or simplified format"],["< 12 sq in","Linear (string) format"]]}}
+   ]},
+  {id:"source",title:"Source Information & Forms of Nutrients",icon:"🌿",
+   tags:["source","form","as","ascorbic acid","citrate","gluconate","chemical form","nutrient form"],
+   content:[
+    {h:"Declaring the Form of a Nutrient",
+     t:"The chemical form of a vitamin or mineral may be declared in parentheses after the nutrient name. This is optional but strongly recommended for consumer transparency.",
+     v:{type:"snippet",lines:[{t:"Vitamin C (as ascorbic acid) 500 mg  556%"},{t:"Calcium (as calcium carbonate) 500 mg  50%"},{t:"Magnesium (as magnesium citrate) 200 mg  50%"}]}}
+   ]},
+  {id:"claims",title:"Structure/Function Claims & Disclaimers",icon:"⚠️",
+   tags:["claim","structure function","disclaimer","FDA","evaluated","statement","disease","diagnose","treat","cure","prevent"],
+   content:[
+    {h:"Required Disclaimer for Structure/Function Claims",
+     t:"If a structure/function claim is made on the label (e.g., 'supports immune health'), the following disclaimer must appear on the same panel as the claim.",
+     v:{type:"box",label:"Required Disclaimer",content:"These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",style:"warning"}},
+    {h:"Disclaimer Placement & Size",
+     t:"The disclaimer must be adjacent to the claim. It must be set in type no smaller than one-sixteenth of an inch (approx. 4.5 points) and must appear in a box outlined by a hairline rule.",
+     v:null}
+   ]}
+];
+
+function buildVisual(v){
+  if(!v) return '';
+  var h='<div class="vis">';
+  if(v.type==='box'){
+    var cls='box-'+v.style;
+    h+='<div class="'+cls+'"><div class="vis-label">'+v.label+'</div><div class="box-content">'+v.content+'</div></div>';
+  } else if(v.type==='snippet'){
+    h+='<div class="snippet"><div class="snippet-lbl">Example Panel Snippet</div>';
+    v.lines.forEach(function(l){
+      if(l.sep){h+='<hr class="snippet-hr">';return;}
+      var cls='snippet-line'+(l.b?' bold':'')+(l.sm?' small':'')+(l.cols?' cols':'');
+      if(l.cols) h+='<div class="'+cls+'"><span>'+l.l+'</span><span>'+l.r+'</span></div>';
+      else h+='<div class="'+cls+'">'+l.t+'</div>';
+    });
+    h+='</div>';
+  } else if(v.type==='fullpanel'){
+    h+='<div class="full-panel">'
+      +'<div class="fp-title">Supplement Facts</div>'
+      +'<div class="fp-serving">Serving Size 2 Capsules (1.4 g)</div>'
+      +'<div class="fp-serving">Servings Per Container 30</div>'
+      +'<div class="fp-body">'
+      +'<div class="fp-row header-row"><span></span><span>Amount Per Serving</span><span class="dv">% Daily Value</span></div>'
+      +'<div class="fp-row"><span>Calories</span><span>10</span><span class="dv"></span></div>'
+      +'<div class="fp-row"><span>Total Carbohydrate</span><span>2 g</span><span class="dv">1%</span></div>'
+      +'<div class="fp-row"><span style="padding-left:12px">Sugars</span><span>0 g</span><span class="dv"></span></div>'
+      +'<div class="fp-row"><span>Vitamin C (as ascorbic acid)</span><span>500 mg</span><span class="dv">556%</span></div>'
+      +'<div class="fp-row"><span>Zinc (as zinc gluconate)</span><span>10 mg</span><span class="dv">91%</span></div>'
+      +'<div class="fp-row"><span>Elderberry Extract</span><span>200 mg</span><span class="dv">†</span></div>'
+      +'</div>'
+      +'<div class="fp-footnote">* Percent Daily Values are based on a 2,000 calorie diet.\n† Daily Value not established.</div>'
+      +'</div>';
+  } else if(v.type==='list'){
+    var cls2='vis-list'+(v.style==='neutral'?' neutral':'');
+    h+='<div class="'+cls2+'"><div class="vis-label">'+v.label+'</div><ul>';
+    v.items.forEach(function(i){h+='<li>'+i+'</li>';});
+    h+='</ul></div>';
+  } else if(v.type==='olist'){
+    h+='<div class="vis-olist"><div class="vis-label">'+v.label+'</div><div class="vis-olist-grid">';
+    v.items.forEach(function(i){h+='<div>'+i+'</div>';});
+    h+='</div></div>';
+  } else if(v.type==='table'){
+    h+='<table class="vis-table"><thead><tr>';
+    v.headers.forEach(function(hd){h+='<th>'+hd+'</th>';});
+    h+='</tr></thead><tbody>';
+    v.rows.forEach(function(r){h+='<tr>';r.forEach(function(c){h+='<td>'+c+'</td>';});h+='</tr>';});
+    h+='</tbody></table>';
+  } else if(v.type==='typesize'){
+    h+='<div class="typesize-box">'
+      +'<div class="vis-label">Type Size Reference</div>'
+      +'<div style="font-size:6pt;font-family:monospace;margin:4px 0">6pt: Calories 10 • Total Fat 0g • Vitamin C 500mg 556%</div>'
+      +'<div style="font-size:8pt;font-family:monospace;margin:4px 0">8pt: Calories 10 • Total Fat 0g • Vitamin C 500mg 556%</div>'
+      +'<div style="font-size:10pt;font-family:monospace">10pt: Calories 10 • Total Fat 0g</div>'
+      +'<div class="typesize-warn">⚠ 6pt is the minimum allowed type size in the panel.</div>'
+      +'</div>';
+  } else if(v.type==='bottle'){
+    h+='<div class="bottle-diag">'
+      +'<div class="vis-label">Supplement Bottle Label Placement</div>'
+      +'<div class="bottle-flow">'
+      +'<div class="bottle-box pdp"><strong>PDP</strong><br>Principal Display Panel<br>(front)</div>'
+      +'<div class="bottle-arrow">→</div>'
+      +'<div class="bottle-box info"><strong>INFO PANEL</strong><br>Supplement Facts<br>Other Ingredients<br>Mfr. Name &amp; Address</div>'
+      +'<div class="bottle-arrow">→</div>'
+      +'<div class="bottle-box back"><strong>BACK</strong><br>Other content</div>'
+      +'</div>'
+      +'<div class="bottle-note">* Information panel = immediately to the right of the PDP when facing the label.</div>'
+      +'</div>';
+  }
+  h+='</div>';
+  return h;
+}
+
+function buildCard(s){
+  var tags=s.tags.slice(0,5).map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
+  var body='';
+  s.content.forEach(function(c){
+    body+='<div class="item">'
+      +'<div class="item-heading">'+c.h+'</div>'
+      +'<div class="item-text">'+c.t+'</div>'
+      +(c.v?buildVisual(c.v):'')
+      +'</div>';
+  });
+  return '<div class="card" id="card-'+s.id+'">'
+    +'<button class="card-header" onclick="toggle(\''+s.id+'\')" aria-expanded="false">'
+    +'<div class="card-header-left">'
+    +'<span class="card-icon">'+s.icon+'</span>'
+    +'<div><div class="card-title">'+s.title+'</div>'
+    +'<div class="card-tags">'+tags+'</div></div>'
+    +'</div>'
+    +'<span class="card-arrow" id="arr-'+s.id+'">▼</span>'
+    +'</button>'
+    +'<div class="card-body" id="body-'+s.id+'">'+body+'</div>'
+    +'</div>';
+}
+
+function render(list){
+  var el=document.getElementById('content');
+  var em=document.getElementById('empty');
+  if(list.length===0){
+    el.innerHTML='';
+    em.classList.add('show');
+    return;
+  }
+  em.classList.remove('show');
+  el.innerHTML=list.map(buildCard).join('');
+}
+
+function toggle(id){
+  var body=document.getElementById('body-'+id);
+  var arr=document.getElementById('arr-'+id);
+  var btn=body.previousElementSibling;
+  var open=body.classList.toggle('open');
+  arr.classList.toggle('open',open);
+  btn.setAttribute('aria-expanded',open);
+}
+
+function setAll(open){
+  sections.forEach(function(s){
+    var body=document.getElementById('body-'+s.id);
+    var arr=document.getElementById('arr-'+s.id);
+    if(!body) return;
+    if(open){body.classList.add('open');arr.classList.add('open');}
+    else{body.classList.remove('open');arr.classList.remove('open');}
+  });
+}
+
+function doSearch(q){
+  var cnt=document.getElementById('search-count');
+  q=q.trim().toLowerCase();
+  if(!q){render(sections);cnt.textContent='';return;}
+  var res=sections.filter(function(s){
+    return s.tags.some(function(t){return t.includes(q);})
+      ||s.title.toLowerCase().includes(q)
+      ||s.content.some(function(c){return c.h.toLowerCase().includes(q)||c.t.toLowerCase().includes(q);});
+  });
+  render(res);
+  cnt.textContent=res.length+' section(s) match "'+q+'"';
+  if(res.length<=3) setAll(true);
+}
+
+function printGuide(){
+  setAll(true);
+  setTimeout(function(){window.print();},200);
+}
+
+// Initial render
+render(sections);
+</script>
+</body>
+</html>
